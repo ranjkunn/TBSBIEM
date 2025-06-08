@@ -1,0 +1,53 @@
+TPV_No   :Enter the TPV problem number being solved (enter only, 3,5,6, and 7).
+7
+L1rpt    : The length of slip-weakening interface size in X1 direction
+30000.d0
+L3rpt    : The length of slip-weakening interface size in X3 direction
+30000.d0
+L3       : The total length of planer interface in X1 direction
+120000.d0
+L3       : The total length of planer interface in X3 direction
+120000.d0
+nele     :  (nele1) Total number of elements in X1-direction (Should be the powers of 2)
+512
+nele3    : Total number of elements in X3-direction (Should be the powers of 2)
+512
+Csm      : The shear wave speed of lower half-space
+3464.d0
+Cdm      : Dilation wave speed of lower half-space
+6000.d0
+Rom      : The density of lower half-space
+2670.d0
+nu       : Poisson's ratio
+0.25d0
+csratio  : csratio of lower and top half-space
+1.2d0
+cdratio  : cdratio of lower and top half-space
+1.2d0
+Roratio  : Roratio of lower and top half-space
+1.0d0
+DeltaC   : Critical slip-weakening distance 
+0.4d0
+betaa    : Courant parameter
+0.4d0
+gamma    : Non-dimensionalised time step
+0.005d0
+Tend     : Total rupture duration time (in sec) 
+12.050d0
+mus0     :  Static coefficient of friction
+0.677d0
+mur0     :  Dynamic coefficient of friction
+0.525d0
+T0nu     : Neucliation shear stress at the center in (MPa) for TPV3, TPV5, TPV6, and TPV7.
+81.6d0            
+T0nuL    : Neucliation shear stress at the left in (MPa) for TPV5. Use T0bg for TPV3, TPV6 and TPV7.
+70.0d0
+T0nuR    : Neucliation shear stress at the right in (MPa) for TPV5. Use T0bg for TPV3, TPV6 and TPV7.
+70.0d0           
+T0bg     : Shear stress outside of the nucleation patch (background shear stress) in (MPa).
+70.0d0
+Tn0      : Initial Normal stress in (MPa)
+-120.0d0
+input    : Give input as 0 if kernels to be calculated and stored in folder ./Kernels
+input    : Give input as 1 if kernels are calculated a priori and stored in folder ./Kernels
+0
