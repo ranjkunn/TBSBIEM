@@ -1,0 +1,43 @@
+Total CPUs assigned=>
+8
+Total GPUs assigned with ID=>
+0
+Running...
+Compilation successful. Running program...
+Execution Started
+ n_pts1       105593 n_pts3       126712 gamma   5.0000000000000001E-003
+ Setting u kernel
+ m11u read       105594   1.1905561110412841E-002
+ m11d read       126713   1.1905561110412841E-002
+ m22u read       105594   1.1004334244260473E-003
+ m22d read       126713   1.1004334244260477E-003
+ m12u read       105594  -0.1547011720125001     
+ m12d read       126713  -0.1547011720125001     
+ Time loop start for:          713 increments.
+ Time step    0.5074516454965358      itime           30
+ Time step     1.014903290993072      itime           60
+ Time step     1.522354936489607      itime           90
+ Time step     2.029806581986143      itime          120
+ Time step     2.537258227482679      itime          150
+ Time step     3.044709872979215      itime          180
+ Time step     3.552161518475751      itime          210
+ Time step     4.059613163972286      itime          240
+ Time step     4.567064809468822      itime          270
+ Time step     5.074516454965358      itime          300
+ Time step     5.581968100461894      itime          330
+ Time step     6.089419745958430      itime          360
+ Time step     6.596871391454965      itime          390
+ Time step     7.104323036951501      itime          420
+ Time step     7.611774682448036      itime          450
+ Time step     8.119226327944572      itime          480
+ Time step     8.626677973441108      itime          510
+ Time step     9.134129618937644      itime          540
+ Time step     9.641581264434180      itime          570
+ Time step     10.14903290993072      itime          600
+ Time step     10.65648455542725      itime          630
+ Time step     11.16393620092379      itime          660
+ Time step     11.67138784642032      itime          690
+ Done
+ ####### TEST RUN OK ########
+ ELAPSED TIME:    1629.227582931519      SECONDS
+SLURM JOB Finished!
