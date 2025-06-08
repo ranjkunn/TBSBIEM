@@ -1,0 +1,45 @@
+Total CPUs assigned=>
+16
+Total GPUs assigned with ID=>
+0
+Running...
+Compilation successful. Running program...
+Execution Started
+ n_pts1        98966 n_pts3       158345 gamma   5.0000000000000001E-003
+ Setting u kernel
+ Loading u kernel
+ m11u read        98967   1.1905561110412827E-002
+ m11d read       158346   1.1905561110412825E-002
+ m22u read        98967   1.1004334244260430E-003
+ m22d read       158346   1.1004334244260430E-003
+ m12u read        98967  -0.1547011720125000     
+ m12d read       158346  -0.1547011720125000     
+ Time loop start for:          891 increments.
+ Time step    0.5006856235565820      itime           37
+ Time step     1.001371247113164      itime           74
+ Time step     1.502056870669746      itime          111
+ Time step     2.002742494226328      itime          148
+ Time step     2.503428117782910      itime          185
+ Time step     3.004113741339492      itime          222
+ Time step     3.504799364896074      itime          259
+ Time step     4.005484988452656      itime          296
+ Time step     4.506170612009238      itime          333
+ Time step     5.006856235565820      itime          370
+ Time step     5.507541859122401      itime          407
+ Time step     6.008227482678984      itime          444
+ Time step     6.508913106235566      itime          481
+ Time step     7.009598729792148      itime          518
+ Time step     7.510284353348730      itime          555
+ Time step     8.010969976905312      itime          592
+ Time step     8.511655600461895      itime          629
+ Time step     9.012341224018476      itime          666
+ Time step     9.513026847575057      itime          703
+ Time step     10.01371247113164      itime          740
+ Time step     10.51439809468822      itime          777
+ Time step     11.01508371824480      itime          814
+ Time step     11.51576934180139      itime          851
+ Time step     12.01645496535797      itime          888
+ Done
+ ####### TEST RUN OK ########
+ ELAPSED TIME:    127.6238009929657      SECONDS
+SLURM JOB Finished!
