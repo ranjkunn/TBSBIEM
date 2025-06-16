@@ -60,7 +60,7 @@ PROGRAM CF_main
    ! Step 1.5: Decleration of parameter
    E6 = 1000000.0d0;
    ! Step 1.4: Read the data input .in file
-   OPEN(7008,FILE='./src/Data_Input.in',STATUS='unknown')
+   OPEN(7008,FILE='./CFW_src/Data_Input.in',STATUS='unknown')
       READ(7008,*) word160
       READ(7008,*) TPV_No   ! Enter the TPV problem number being solved (enter only, 3,5,6, and 7). Lets keep 1 for CFW simulations
       READ(7008,*) word160
@@ -140,6 +140,8 @@ PROGRAM CF_main
       outpos1=  nint(12000.0d0/dx);  outpos2=  nint(7500.0d0/dx)  ! Position at the interface to compute field quantities
       outpos3=  nint(4500.0d0/dx) 
       outpos4=  nint(1000.0d0/dx) 
+      time = 0.d0
+      itime = 0  
    CLOSE(7008)
 
   ! Step 1.3:  Decleration of initial parameter for loading
@@ -184,8 +186,8 @@ PROGRAM CF_main
       close(7009)      
 !  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
        
-   OPEN(7006,file='./txts/Rupture_Location.txt')
-   close(7006)   
+   ! OPEN(7006,file='./txts/Rupture_Location.txt')
+   ! close(7006)   
    ! Step 1.7: Create the output data file for the station points
    IF (TPV_No .eq. 1) THEN ! This is a special case of crack fron wave simulation
       do i = 1, 14
@@ -212,7 +214,7 @@ PROGRAM CF_main
          close(7000+i)
       end do   
    ELSE
-      WRITE(6,*) 'Input Error'
+      print *, 'Input Error'
       STOP
    ENDIF  
  
@@ -229,7 +231,7 @@ PROGRAM CF_main
    allocate(Tau1Old(nele1,nele3),Tau2Old(nele1,nele3),Tau3Old(nele1,nele3),velo2(nele1,nele3))
    allocate(c11u(nele1,nele3),c11d(nele1,nele3),c22u(nele1,nele3),c22d(nele1,nele3),c121u(nele1,nele3),c121d(nele1,nele3))
    allocate(c33u(nele1,nele3),c33d(nele1,nele3),c122u(nele1,nele3),c122d(nele1,nele3),const1(nele1,nele3),const3(nele1,nele3))
-   allocate(T0bgL_Front(ntime,2),CFW(nele3+1,2))
+   allocate(T0bgL_Front(ntime+1,3),CFW(nele3+1,2))
    ! Step 1.7  Allocate size for the variables FOR cuFFT
    allocate(tauf1trans(nele3,nele1), tauf2trans(nele3,nele1),tauf3trans(nele3,nele1),const2(nele1,nele3))
    allocate(conv1trans(nele3,nele1), conv2trans(nele3,nele1), conv3trans(nele3,nele1))
@@ -243,16 +245,16 @@ PROGRAM CF_main
    ! step 2.1: COMPUTE KERNEL
    n_pts1 = ceiling(dsqrt(2.0d0)*pii*betaa*ntime/(csratio*gamma))
    n_pts3 = ceiling(dsqrt(2.0d0)*pii*betaa*ntime/gamma)
-   WRITE(*,*) 'n_pts1', n_pts1, 'n_pts3', n_pts3, 'gamma',gamma
+   print *, 'n_pts1', n_pts1, 'n_pts3', n_pts3, 'gamma',gamma
    
    ! Give input as 0 if kernels to be calculated and stored in folder ./Kernels
    ! Give input as 1 if kernels are calculated a priori and stored in folder ./Kernels
    allocate(m11u(0:n_pts1),tu(0:n_pts1),m11d(0:n_pts3),td(0:n_pts3),m22u(0:n_pts1),m22d(0:n_pts3),m12u(0:n_pts1),m12d(0:n_pts3))   
  
    ! This loop calculates or retrives the kernels as per the input value
-   write(*,*)'Setting u kernel'
+   print *,'Setting u kernel'
    if (input == 1) then
-      write(*,*)'Loading u kernel' 
+      print *,'Loading u kernel' 
       open(91,file='./Kernels/Kernel_m11u.dat')
       open(92,file='./Kernels/Kernel_m11d.dat')
       open(93,file='./Kernels/Kernel_m22u.dat')
@@ -260,17 +262,17 @@ PROGRAM CF_main
       open(95,file='./Kernels/Kernel_m12u.dat')
       open(96,file='./Kernels/Kernel_m12d.dat')
       read(91,*)(m11u(i),i=1,n_pts1)
-      WRITE(*,*) 'm11u read', size(m11u), m11u(1)
+      print *, 'm11u read', size(m11u), m11u(1)
       read(92,*)(m11d(i),i=1,n_pts3)
-      WRITE(*,*) 'm11d read', size(m11d), m11d(1)
+      print *, 'm11d read', size(m11d), m11d(1)
       read(93,*)(m22u(i),i=1,n_pts1)
-      WRITE(*,*) 'm22u read', size(m22u), m22u(1)
+      print *, 'm22u read', size(m22u), m22u(1)
       read(94,*)(m22d(i),i=1,n_pts3)
-      WRITE(*,*) 'm22d read', size(m22d), m22d(1)
+      print *, 'm22d read', size(m22d), m22d(1)
       read(95,*)(m12u(i),i=1,n_pts1)
-      WRITE(*,*) 'm12u read', size(m12u), m12u(1)
+      print *, 'm12u read', size(m12u), m12u(1)
       read(96,*)(m12d(i),i=1,n_pts3)
-      WRITE(*,*) 'm12d read', size(m12d), m12d(1)
+      print *, 'm12d read', size(m12d), m12d(1)
       close(91)
       close(92)
       close(93)
@@ -283,45 +285,45 @@ PROGRAM CF_main
       do i = 1,n_pts1
          write(1001,*) m11u(i)
       enddo
-      WRITE(*,*) 'm11u read', size(m11u), m11u(1)
+      print *, 'm11u read', size(m11u), m11u(1)
       close(1001)
       CALL kern11(n_pts3,gamma,m11d,td)
       open(2001,file='./Kernels/Kernel_m11d.dat')
       do i = 1,n_pts3
          write(2001,*) m11d(i)
       enddo
-      WRITE(*,*) 'm11d read', size(m11d), m11d(1)
+      print *, 'm11d read', size(m11d), m11d(1)
       close(2001)
       CALL kern22(n_pts1,gamma,m22u,tu)
       open(1002,file='./Kernels/Kernel_m22u.dat')
       do i = 1,n_pts1
          write(1002,*) m22u(i)
       enddo
-      WRITE(*,*) 'm22u read', size(m22u), m22u(1)
+      print *, 'm22u read', size(m22u), m22u(1)
       close(1002)
       CALL kern22(n_pts3,gamma,m22d,td)
       open(2002,file='./Kernels/Kernel_m22d.dat')
       do i = 1,n_pts3
          write(2002,*) m22d(i)
       enddo
-      WRITE(*,*) 'm22d read', size(m22d), m22d(1)
+      print *, 'm22d read', size(m22d), m22d(1)
       close(2002)
       CALL kern12(n_pts1,gamma,m12u,tuu)
       open(1012,file='./Kernels/Kernel_m12u.dat')
       do i = 1,n_pts1
          write(1012,*) m12u(i)
       enddo
-      WRITE(*,*) 'm12u read', size(m12u), m12u(1)
+      print *, 'm12u read', size(m12u), m12u(1)
       close(1012)
       CALL kern12(n_pts3,gamma,m12d,tdd)
       open(2012,file='./Kernels/Kernel_m12d.dat')
       do i = 1,n_pts3
          write(2012,*) m12d(i)
       enddo
-      WRITE(*,*) 'm12d read', size(m12d), m12d(1)
+      print *, 'm12d read', size(m12d), m12d(1)
    close(2012)
    else
-      write(*,*)'Input Error'
+      print *,'Input Error'
       stop
    endif
    m22u(0) = 0.0d0
@@ -329,6 +331,17 @@ PROGRAM CF_main
    m11u(0) = 0.0d0
    m11d(0) = 0.0d0
    
+   
+
+   ! Step 3.2: Read Crack front output file from line crak simulation for loading input location.
+   open(7001,file="./dats/SlipFrontOut.dat")
+   do i= 1,ntime+1
+        read(7001,*)(T0bgL_Front(i,j),j=1,3)
+        !63 format(3(3x,e14.7))
+   end do
+   close(7001) 
+ 
+    
    ! step 2.1: INITIALIZE DIRECTIONAL WAVES
    wave1 = 2.0d0*(pii/L1)*(/(i,i=0,nele1/2),(j,j=1-nele1/2,-1,1)/) ! set up wave nos. (k -x1 direction)
    wave3 = 2.0d0*(pii/L3)*(/(i,i=0,nele3/2),(j,j=1-nele3/2,-1,1)/) ! set up wave nos. (m -x3 direction)
@@ -344,6 +357,7 @@ PROGRAM CF_main
    q(1,1) =1.0d0
    ! &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
    
+
    ! step 3.1a: Set up initial shear loads for TPV 3, 5 ,6, and 7 cases
 ! !$acc kernels
    ! do i=1,nele1
@@ -392,8 +406,8 @@ PROGRAM CF_main
       do j=1,nele3
          x1 = (i - nele1 / 2) * dx
          y1 = (j-nele3/2)*dx
-         if (y1 .ge. -L3rpt/2.0d0 .and. y1.le. L3rpt/2.0d0 .and. x1 .ge. -L1rpt/2.0d0 .and. x1.le. CF_LocOld) then
-            TT0(i,j) = T0bgL !/sqrt(2.d0) ! value can be changed based on required combinations of shear loading on the fault plane
+         if (y1 .ge. -L3rpt/2.0d0 .and. y1.le. L3rpt/2.0d0 .and. x1 .ge. -L1rpt/2.0d0 .and. x1.le. T0bgL_Front(itime+1,2)) then
+            TT0(i,j) = T0bgL_Front(itime+1,3) !/sqrt(2.d0) ! value can be changed based on required combinations of shear loading on the fault plane
             Tn(i,j) = Tn0 
             TS0(i,j) = 0.d0 !T0bgL/sqrt(2.d0) ! value can be changed based on required combinations of shear loading on the fault plane
          else
@@ -421,8 +435,7 @@ PROGRAM CF_main
    enddo 
 ! !$acc end kernels
    ! Step 3.2: Set the initial conditions of the solution for 0th increment.
-   time = 0.d0
-   itime = 0  
+
 ! !$acc kernels 
    do i = 1,nele1
       do j = 1,nele3
@@ -450,19 +463,16 @@ PROGRAM CF_main
    enddo
 !$acc end kernels  
 
-   ! Step 3.2: Read Crack front output file from line crak simulation for loading input location.
-   open(1,file="./dats/SlipFrontOut.dat")
-   do i= 1,ntime+1
-        read(1,33)(T0bgL_Front(j),i=1,2)
-   do end        
-   close(1) 
+
+   
     
    
   ! Step 3.2: Crack front output file declration with the initial conditions of the problem.
-   WRITE(filename,'(a,i4.4,a)') "SlipFrontOutNew",(itime),".txt"    
+   WRITE(filename,'(a,i4.4,a)') "./txts/SlipFrontOutNew",(itime),".txt"    
    DO i=1,nele3+1
       open(unit=1,file=filename,Access = 'append',Status='unknown')
          write(1,33) CFW(i,1),CFW(i,2)
+   33    format(7(7x,e14.7))
       close(1)    
    enddo
    
@@ -471,13 +481,13 @@ PROGRAM CF_main
    ! &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
    
    ! Step 4: Time loop start
-   write(*,*)'Time loop start for:', ntime, 'increments.'
+   print *,'Time loop start for:', ntime, 'increments.'
    do itime = 1, ntime
       time = itime*dt
 !$acc kernels      
 
       ! Step 4.1: Get loading boundary in current increment from the previous simulation with no asperity
-      a_t = L1rpt/2.0d0 + T0bgL_Front(itime,2)
+      a_t = L1rpt/2.0d0 + T0bgL_Front(itime+1,2)
       
       
       do i = 1,nele1
@@ -503,10 +513,10 @@ PROGRAM CF_main
       do j=1,nele3
          x1 = (i - nele1 / 2) * dx
          y1 = (j-nele3/2)*dx
-         if (y1 .ge. -L3rpt/2.0d0 .and. y1.le. L3rpt/2.0d0 .and. x1 .ge. -L1rpt/2.0d0 .and. x1.le. T0bgL_Front(itime,2)) then
+         if (y1 .ge. -L3rpt/2.0d0 .and. y1.le. L3rpt/2.0d0 .and. x1 .ge. -L1rpt/2.0d0 .and. x1.le. T0bgL_Front(itime+1,2)) then
             Tstr = mus0 * dabs(Tn0)
-            T0bgL = const_a0 * sqrt(2.d0 * Mu * Tstr * DeltaC /(pii * a_t* (1.d0 - nu)))
-            TT0(i,j) = T0bgL !/sqrt(2.d0) ! value can be changed based on required combinations of shear loading on the fault plane
+            !T0bgL = const_a0 * sqrt(2.d0 * Mu * Tstr * DeltaC /(pii * a_t* (1.d0 - nu)))
+            TT0(i,j) = T0bgL_Front(itime+1,3) !T0bgL !/sqrt(2.d0) ! value can be changed based on required combinations of shear loading on the fault plane
             Tn(i,j) = Tau2Old(i,j)
             TS0(i,j) = 0.d0 !T0bgL/sqrt(2.d0) ! value can be changed based on required combinations of shear loading on the fault plane
          else
@@ -738,7 +748,7 @@ PROGRAM CF_main
       do i=1,nele1
          y1 = (j - nele3 / 2) * dx
          x1 = (i - nele1 / 2) * dx
-            if (x1 .ge. -L1rpt/2.0d0 + a_0 .and. x1.le.L1rpt/2.0d0 - L1_barrier) then  
+            if (x1 .ge. -L1rpt/2.0d0 + a_0 .and. x1 .le. L1rpt/2.0d0 - L1_barrier) then  
                if (slip(i,j) .gt. 0.00000001d0) then
                   CFW(j,1) = (i - nele1 / 2) * dx !maxval(slipold) 
                   CFW(j,2) = (j - nele3 / 2) * dx             
@@ -751,128 +761,128 @@ PROGRAM CF_main
       
       ! Step 14: Writing the results to file
    if (mod(itime,outinterval2) == 0) then
-        write(*,*)'Time step ', time,'itime',itime
+        print *,'Time step ', time,'itime',itime
         WRITE(filename,'(a,i4.4,a)') "./txts/Out",(itime/outinterval2),".txt"       
-        OPEN(unit=itime,file=filename)
+        OPEN(unit=100+itime,file=filename)
          do i = 1,nele1
-            x1=(i-nele1/2)*dx
             do j=1,nele3
+               x1=(i-nele1/2)*dx
                y1=(j-nele3/2)*dx
                if(slip(i,j) .lt. 0.2d0 .and. slip(i,j) .gt. 0.0001d0)then
-                  write(itime,30)time,x1/1000.0d0,y1/1000.0d0,slip(i,j),slip1(i,j),slip3(i,j),velo1(i,j),velo3(i,j)
+                  write(100+itime,30)time,x1/1000.0d0,y1/1000.0d0,slip(i,j),slip1(i,j),slip3(i,j),velo1(i,j),velo3(i,j)
 30                format(8(8x,e14.7))
                endif
             enddo
         enddo
-        close (itime)  
+        close (100+itime)  
     endif
           
 
 
-   ! if (mod(itime,outinterval2) == 0) then
-   if (mod(itime,itime) == 0) then
-      do i=1,nele1
-         do j=nele3/2-1,nele3/2+1
-         x1 = (i - nele1 / 2) * dx
-            y1 = (j-nele3/2)*dx
-            if (x1 .ge. (-L1rpt/2.0d0  + a_0) .and. x1.le. L1rpt/2.0d0 - L1_barrier ) then 
-               if (y1 .eq. 0.d0) then
-                  if (slip1(i,j) .lt. 0.0005d0 .and. slip1(i,j) .gt. 0.00000001d0) then
-                     OPEN(7006,file='./txts/Rupture_Location.txt',Access = 'append',Status='old')            
-                     write(7006,32) itime*1.d0,time,x1,y1,slip1(i,j),(Slip1LocNew-(-L1rpt/2.0d0  + a_0))/time, &
-                     (Slip1LocNew-(-L1rpt/2.0d0 + a_0))/time/Cs,T0bgL
-                     32    format(8(8x,e14.7))
-                     close(7006)
-                  end if         
-               end if
-            end if
-         end do
-      end do
-   end if
+   ! ! if (mod(itime,outinterval2) == 0) then
+   ! if (mod(itime,itime) == 0) then
+      ! do i=1,nele1
+         ! do j=nele3/2-1,nele3/2+1
+         ! x1 = (i - nele1 / 2) * dx
+            ! y1 = (j-nele3/2)*dx
+            ! if (x1 .ge. (-L1rpt/2.0d0  + a_0) .and. x1.le. L1rpt/2.0d0 - L1_barrier ) then 
+               ! if (y1 .eq. 0.d0) then
+                  ! if (slip1(i,j) .lt. 0.0005d0 .and. slip1(i,j) .gt. 0.00000001d0) then
+                     ! OPEN(7006,file='./txts/Rupture_Location.txt',Access = 'append',Status='old')            
+                     ! write(7006,32) itime*1.d0,time,x1,y1,slip1(i,j),(Slip1LocNew-(-L1rpt/2.0d0  + a_0))/time, &
+                     ! (Slip1LocNew-(-L1rpt/2.0d0 + a_0))/time/Cs,T0bgL
+                     ! 32    format(8(8x,e14.7))
+                     ! close(7006)
+                  ! end if         
+               ! end if
+            ! end if
+         ! end do
+      ! end do
+   ! end if
    
 
    ! if (float(itime/outinterval1) == float(itime)/float(outinterval1)) then
    if (mod(itime,itime) == 0) then
       IF (TPV_No .eq. 1) THEN
-            OPEN(7001, file='./dats/out14.dat',Access = 'append',Status='old')     
+            OPEN(7001, file='./txts/out14.txt',Access = 'append',Status='old')     
                write(7001,31)time,&
                slip1(nele1/2-outpos4,nele3/2),velo1(nele1/2-outpos4,nele3/2),real(tau1(nele1/2-outpos4,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4,nele3/2),velo3(nele1/2-outpos4,nele3/2),real(tau3(nele1/2-outpos4,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4,nele3/2),velo2(nele1/2-outpos4,nele3/2),real(tau2(nele1/2-outpos4,nele3/2,itime))/E6
                close(7001)
-               OPEN(7002, file='./dats/out13.dat',Access = 'append',Status='old')  
+               OPEN(7002, file='./txts/out13.txt',Access = 'append',Status='old')  
                write(7002,31)time,&
                slip1(nele1/2-outpos4*2,nele3/2),velo1(nele1/2-outpos4*2,nele3/2),real(tau1(nele1/2-outpos4*2,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*2,nele3/2),velo3(nele1/2-outpos4*2,nele3/2),real(tau3(nele1/2-outpos4*2,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*2,nele3/2),velo2(nele1/2-outpos4*2,nele3/2),real(tau2(nele1/2-outpos4*2,nele3/2,itime))/E6
                close(7002)
-               OPEN(7003, file='./dats/out12.dat',Access = 'append',Status='old')     
+               OPEN(7003, file='./txts/out12.txt',Access = 'append',Status='old')     
                write(7003,31)time,&
                slip1(nele1/2-outpos4*3,nele3/2),velo1(nele1/2-outpos4*3,nele3/2),real(tau1(nele1/2-outpos4*3,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*3,nele3/2),velo3(nele1/2-outpos4*3,nele3/2),real(tau3(nele1/2-outpos4*3,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*3,nele3/2),velo2(nele1/2-outpos4*3,nele3/2),real(tau2(nele1/2-outpos4*3,nele3/2,itime))/E6
                close(7003)             
-               OPEN(7004, file='./dats/out11.dat',Access = 'append',Status='old')  
+               OPEN(7004, file='./txts/out11.txt',Access = 'append',Status='old')  
                write(7004,31)time,&
                slip1(nele1/2-outpos4*4,nele3/2),velo1(nele1/2-outpos4*4,nele3/2),real(tau1(nele1/2-outpos4*4,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*4,nele3/2),velo3(nele1/2-outpos4*4,nele3/2),real(tau3(nele1/2-outpos4*4,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*4,nele3/2),velo2(nele1/2-outpos4*4,nele3/2),real(tau2(nele1/2-outpos4*4,nele3/2,itime))/E6
                close(7004)
-               OPEN(7005, file='./dats/out10.dat',Access = 'append',Status='old')     
+               OPEN(7005, file='./txts/out10.txt',Access = 'append',Status='old')     
                write(7005,31)time,&
                slip1(nele1/2-outpos4*5,nele3/2),velo1(nele1/2-outpos4*5,nele3/2),real(tau1(nele1/2-outpos4*5,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*5,nele3/2),velo3(nele1/2-outpos4*5,nele3/2),real(tau3(nele1/2-outpos4*5,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*5,nele3/2),velo2(nele1/2-outpos4*5,nele3/2),real(tau2(nele1/2-outpos4*5,nele3/2,itime))/E6
                close(7005)             
-               OPEN(7006, file='./dats/out09.dat',Access = 'append',Status='old')  
+               OPEN(7006, file='./txts/out09.txt',Access = 'append',Status='old')  
                write(7006,31)time,&
                slip1(nele1/2-outpos4*6,nele3/2),velo1(nele1/2-outpos4*6,nele3/2),real(tau1(nele1/2-outpos4*6,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*6,nele3/2),velo3(nele1/2-outpos4*6,nele3/2),real(tau3(nele1/2-outpos4*6,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*6,nele3/2),velo2(nele1/2-outpos4*6,nele3/2),real(tau2(nele1/2-outpos4*6,nele3/2,itime))/E6
                close(7006)
-               OPEN(7007, file='./dats/out08.dat',Access = 'append',Status='old')     
+               OPEN(7007, file='./txts/out08.txt',Access = 'append',Status='old')     
                write(7007,31)time,&
                slip1(nele1/2-outpos4*7,nele3/2),velo1(nele1/2-outpos4*7,nele3/2),real(tau1(nele1/2-outpos4*7,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*7,nele3/2),velo3(nele1/2-outpos4*7,nele3/2),real(tau3(nele1/2-outpos4*7,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*7,nele3/2),velo2(nele1/2-outpos4*7,nele3/2),real(tau2(nele1/2-outpos4*7,nele3/2,itime))/E6
                close(7007)             
-               OPEN(7008, file='./dats/out07.dat',Access = 'append',Status='old')  
+               OPEN(7008, file='./txts/out07.txt',Access = 'append',Status='old')  
                write(7008,31)time,&
                slip1(nele1/2-outpos4*8,nele3/2),velo1(nele1/2-outpos4*8,nele3/2),real(tau1(nele1/2-outpos4*8,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*8,nele3/2),velo3(nele1/2-outpos4*8,nele3/2),real(tau3(nele1/2-outpos4*8,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*8,nele3/2),velo2(nele1/2-outpos4*8,nele3/2),real(tau2(nele1/2-outpos4*8,nele3/2,itime))/E6
                close(7008)
-               OPEN(7009, file='./dats/out06.dat',Access = 'append',Status='old')  
+               OPEN(7009, file='./txts/out06.txt',Access = 'append',Status='old')  
                write(7009,31)time,&
                slip1(nele1/2-outpos4*9,nele3/2),velo1(nele1/2-outpos4*9,nele3/2),real(tau1(nele1/2-outpos4*9,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*9,nele3/2),velo3(nele1/2-outpos4*9,nele3/2),real(tau3(nele1/2-outpos4*9,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*9,nele3/2),velo2(nele1/2-outpos4*9,nele3/2),real(tau2(nele1/2-outpos4*9,nele3/2,itime))/E6
                close(7009)
-               OPEN(7010, file='./dats/out05.dat',Access = 'append',Status='old')  
+               OPEN(7010, file='./txts/out05.txt',Access = 'append',Status='old')  
                write(7010,31)time,&
                slip1(nele1/2-outpos4*10,nele3/2),velo1(nele1/2-outpos4*10,nele3/2),real(tau1(nele1/2-outpos4*10,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*10,nele3/2),velo3(nele1/2-outpos4*10,nele3/2),real(tau3(nele1/2-outpos4*10,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*10,nele3/2),velo2(nele1/2-outpos4*10,nele3/2),real(tau2(nele1/2-outpos4*10,nele3/2,itime))/E6
                close(7010)       
-               OPEN(7011, file='./dats/out04.dat',Access = 'append',Status='old')  
+               OPEN(7011, file='./txts/out04.txt',Access = 'append',Status='old')  
                write(7011,31)time,&
                slip1(nele1/2-outpos4*11,nele3/2),velo1(nele1/2-outpos4*11,nele3/2),real(tau1(nele1/2-outpos4*11,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*11,nele3/2),velo3(nele1/2-outpos4*11,nele3/2),real(tau3(nele1/2-outpos4*11,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*11,nele3/2),velo2(nele1/2-outpos4*11,nele3/2),real(tau2(nele1/2-outpos4*11,nele3/2,itime))/E6
                close(7011)       
-               OPEN(7012, file='./dats/out03.dat',Access = 'append',Status='old')  
+               OPEN(7012, file='./txts/out03.txt',Access = 'append',Status='old')  
                write(7012,31)time,&
                slip1(nele1/2-outpos4*12,nele3/2),velo1(nele1/2-outpos4*12,nele3/2),real(tau1(nele1/2-outpos4*12,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*12,nele3/2),velo3(nele1/2-outpos4*12,nele3/2),real(tau3(nele1/2-outpos4*12,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*12,nele3/2),velo2(nele1/2-outpos4*12,nele3/2),real(tau2(nele1/2-outpos4*12,nele3/2,itime))/E6
                close(7012)       
-               OPEN(7013, file='./dats/out02.dat',Access = 'append',Status='old')  
+               OPEN(7013, file='./txts/out02.txt',Access = 'append',Status='old')  
                write(7013,31)time,&
                slip1(nele1/2-outpos4*13,nele3/2),velo1(nele1/2-outpos4*13,nele3/2),real(tau1(nele1/2-outpos4*13,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*13,nele3/2),velo3(nele1/2-outpos4*13,nele3/2),real(tau3(nele1/2-outpos4*13,nele3/2,itime))/E6,&
                slip2(nele1/2-outpos4*13,nele3/2),velo2(nele1/2-outpos4*13,nele3/2),real(tau2(nele1/2-outpos4*13,nele3/2,itime))/E6
                close(7013)       
-               OPEN(7014, file='./dats/out01.dat',Access = 'append',Status='old')  
+               OPEN(7014, file='./txts/out01.txt',Access = 'append',Status='old')  
                write(7014,31)time,&
                slip1(nele1/2-outpos4*14,nele3/2),velo1(nele1/2-outpos4*14,nele3/2),real(tau1(nele1/2-outpos4*14,nele3/2,itime))/E6,&
                slip3(nele1/2-outpos4*14,nele3/2),velo3(nele1/2-outpos4*14,nele3/2),real(tau3(nele1/2-outpos4*14,nele3/2,itime))/E6,&
@@ -1023,7 +1033,7 @@ PROGRAM CF_main
                   slip2(nele1/2+outpos1,nele3/2+outpos2),velo2(nele1/2+outpos1,nele3/2+outpos2),real(tau2(nele1/2+outpos1,nele3/2+outpos2,itime))/E6
                close(7005) 
          ELSE
-                  WRITE(6,*) 'Input Error'
+                  print *, 'Input Error'
                   STOP
       ENDIF                 
 
@@ -1033,21 +1043,21 @@ PROGRAM CF_main
 
              
       ! Step 14: Writing the results to file
-      WRITE(filename,'(a,i4.4,a)') "SlipFrontOutNew",(itime),".txt"    
+      WRITE(filename,'(a,i4.4,a)') "./txts/SlipFrontOutNew",(itime),".txt"    
       DO i=1,nele3
-         open(unit=1,file=filename,Access = 'append',Status='old')
+         open(unit=1,file=filename,Access = 'append',Status='unknown')
             write(1,33) CFW(i,1),CFW(i,2)
          close(1)    
       enddo
 
 
    enddo   ! end of time loop
-   write(*,*)"Done"
-   WRITE(*,*) '####### TEST RUN OK ########'
+   print *,"Done"
+   print *, '####### TEST RUN OK ########'
    ! GET THE END TIME
    CALL CPU_TIME(END_TIME)
    ! CALCULATE THE ELAPSED TIME
    ELAPSED_TIME = END_TIME - START_TIME
    ! OUTPUT THE ELAPSED TIME
-   WRITE(*,*) "ELAPSED TIME:", ELAPSED_TIME, "SECONDS"
+   print *, "ELAPSED TIME:", ELAPSED_TIME, "SECONDS"
 END PROGRAM CF_main
