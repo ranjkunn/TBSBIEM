@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quickstart &mdash; TBSBIEM 2025.0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=cfcb26ae"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code Usage" href="Code_Usage.html" />
+    <link rel="prev" title="TBSBIEM" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TBSBIEM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerquisates">Prerquisates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#openmp-installation">OpenMP Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvidia-hpcsdk-and-cuda-toolkit-installation">NVIDIA HPCSDK and CUDA Toolkit Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nvidia-hpcsdk">NVIDIA HPCSDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cuda-toolkit">CUDA toolkit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-compilation-and-testing">Code Compilation and Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Code_Usage.html">Code Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Formulation.html">Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TBSBIEM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quickstart</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h1>
+<p>TBSBIEM is written in Fortran Language. The current version of code is tested in Debian based Ubuntu operating system. Hence, we stick our documentation how to use the code in Debian based Linux operating systems like Ubuntu. Code requires following prerequisates to compile and execute it smoothly.</p>
+<section id="prerquisates">
+<h2>Prerquisates<a class="headerlink" href="#prerquisates" title="Link to this heading"></a></h2>
+<p>The following dependencies are required for TBSBIEM:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>OpenMP</strong></p></li>
+<li><p><strong>NVIDIA HPCSDK</strong> module</p></li>
+<li><p><strong>CUDA</strong> toolkit</p></li>
+</ul>
+</div></blockquote>
+<section id="openmp-installation">
+<h3>OpenMP Installation<a class="headerlink" href="#openmp-installation" title="Link to this heading"></a></h3>
+<p>For any information on OpenMP installation and usage, one can look into following website: <a class="reference external" href="https://www.openmp.org">https://www.openmp.org</a></p>
+<p>However, for the sake of completeness of documentation, we provide simple steps for installation of OpenMP in Debian based Linux operating systems.</p>
+<p>To install OpenMP, follow this step-by-step guide. OpenMP is provided through the GCC compiler, and its runtime library (libomp).</p>
+<p>Before installing any software, update the package list to ensure all software is current:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">upgrade</span>
+</pre></div>
+</div>
+<p>Install GCC, which includes basic OpenMP support. For the latest OpenMP features, also install the libomp-dev package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">gcc</span> <span class="n">g</span><span class="o">++</span> <span class="n">gfortran</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libomp</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+<p>Check if OpenMP is supported in your GCC compiler by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="o">|</span> <span class="n">cpp</span> <span class="o">-</span><span class="n">fopenmp</span> <span class="o">-</span><span class="n">dM</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="nb">open</span>
+</pre></div>
+</div>
+<p>To control the number of threads that OpenMP will use at runtime, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">OMP_NUM_THREADS</span><span class="o">=</span><span class="mi">4</span>
+</pre></div>
+</div>
+<p>The -fopenmp flag enables OpenMP parallelization.</p>
+</section>
+<section id="nvidia-hpcsdk-and-cuda-toolkit-installation">
+<h3>NVIDIA HPCSDK and CUDA Toolkit Installation<a class="headerlink" href="#nvidia-hpcsdk-and-cuda-toolkit-installation" title="Link to this heading"></a></h3>
+<p>The TBSBIEM code is tested using the nvfortran compiler and GPU acceleration is achived using OpenACC directives. To enable <em>nvcc</em> compiler support, install the NVIDIA HPCSDK and CUDA toolkit provides the environment for building GPU-accelerated applications.</p>
+<p>The following webpage has installation and usage instructions for NVIDIA HPCSDK: <a class="reference external" href="https://docs.nvidia.com/hpc-sdk/hpc-sdk-install-guide/index.html">https://docs.nvidia.com/hpc-sdk/hpc-sdk-install-guide/index.html</a></p>
+<p>The following webpage has installation instructions for CUDA toolkit: <a class="reference external" href="https://www.cherryservers.com/blog/install-cuda-ubuntu">https://www.cherryservers.com/blog/install-cuda-ubuntu</a></p>
+<p>We have documented simple steps to the install the NVIDIA HPCSDK and CUDA toolkit in Debian based Linux operating systems.</p>
+<section id="nvidia-hpcsdk">
+<h4>NVIDIA HPCSDK<a class="headerlink" href="#nvidia-hpcsdk" title="Link to this heading"></a></h4>
+<p>Install or update NVIDIA dirvers first. One can use following webpage for teh reference:
+<a class="reference external" href="https://www.server-world.info/en/note?os=Ubuntu_24.04&amp;p=nvidia&amp;f=1">https://www.server-world.info/en/note?os=Ubuntu_24.04&amp;p=nvidia&amp;f=1</a></p>
+<p>Download the latest tar file installer from the NVIDIA HPCSDK website suitable for Linux x86_64 or ARM architectures from the following webpage: <a class="reference external" href="https://developer.nvidia.com/hpc-sdk-downloads">https://developer.nvidia.com/hpc-sdk-downloads</a></p>
+<p>Open a terminal and extract the downloaded package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="n">xpfz</span> <span class="o">&lt;</span><span class="n">tarfile</span><span class="o">&gt;.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>Navigate into the extracted directory and start the installation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">&lt;</span><span class="n">tarfile</span><span class="o">&gt;</span>
+<span class="n">sudo</span> <span class="o">./</span><span class="n">install</span>
+</pre></div>
+</div>
+<p>Choose installation location (default is /opt/nvidia/hpc_sdk) and type of installation (single system or network):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">NVHPC_SILENT</span><span class="o">=</span><span class="n">true</span>
+<span class="n">export</span> <span class="n">NVHPC_INSTALL_DIR</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">nvidia</span><span class="o">/</span><span class="n">hpc_sdk</span>
+<span class="n">export</span> <span class="n">NVHPC_INSTALL_TYPE</span><span class="o">=</span><span class="n">single</span>
+<span class="n">sudo</span> <span class="o">./</span><span class="n">install</span>
+</pre></div>
+</div>
+<p>After installation, set up environment variables in your shell configuration file (e.g., ~/.bashrc):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/&lt;version&gt;/compilers/bin:$PATH
+export MANPATH=/opt/nvidia/hpc_sdk/Linux_x86_64/&lt;version&gt;/compilers/man:$MANPATH
+</pre></div>
+</div>
+<p>Replace &lt;version&gt; with the installed version directory</p>
+</section>
+<section id="cuda-toolkit">
+<h4>CUDA toolkit<a class="headerlink" href="#cuda-toolkit" title="Link to this heading"></a></h4>
+<p>Here are teh steps to install the CUDA toolkit.</p>
+<p>Update the system and install essential packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span> <span class="n">dkms</span>
+</pre></div>
+</div>
+<p>Download an appropriate OS and local or network version of CUDA Toolkit installer from follwoing website. <a class="reference external" href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a>.</p>
+<p>One can use the apt method. For Ubuntu 22.04, as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">developer</span><span class="o">.</span><span class="n">download</span><span class="o">.</span><span class="n">nvidia</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">compute</span><span class="o">/</span><span class="n">cuda</span><span class="o">/</span><span class="n">repos</span><span class="o">/</span><span class="n">ubuntu2204</span><span class="o">/</span><span class="n">x86_64</span><span class="o">/</span><span class="n">cuda</span><span class="o">-</span><span class="n">keyring_1</span><span class="mf">.1</span><span class="o">-</span><span class="mi">1</span><span class="n">_all</span><span class="o">.</span><span class="n">deb</span>
+<span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="n">cuda</span><span class="o">-</span><span class="n">keyring_1</span><span class="mf">.1</span><span class="o">-</span><span class="mi">1</span><span class="n">_all</span><span class="o">.</span><span class="n">deb</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">cuda</span>
+</pre></div>
+</div>
+<p>Add CUDA to your environment variables in .bashrc:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+</pre></div>
+</div>
+<p>Reload environment and test:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+<span class="n">nvcc</span> <span class="o">-</span><span class="n">V</span>
+</pre></div>
+</div>
+<p>This should display the installed CUDA version.</p>
+<p>for the use of GPU acceleration using OpenACC directives. The “-acc” flag of openACC enables the use of GPU acceleration with OpenACC. The CUDA Toolkit is also suggested for the cuFFT used in the code, which use cuda programming in the Fortran language to generate discrete fast Fourier Transforms and their inverse with GPU acceleration. The -lcufft flag enables cuFFT.</p>
+</section>
+</section>
+</section>
+<section id="code-structure">
+<h2>Code Structure<a class="headerlink" href="#code-structure" title="Link to this heading"></a></h2>
+<p>To download the code, one can clone from the git repository using the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ranjkunn</span><span class="o">/</span><span class="n">TBSBIEM</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Now get into directory TBSBIEM, you will find following directories:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>./data
+./Input_files
+./src
+./src_Kernels
+./TBSBIEM_Documentation
+./TPV3_Kernels
+./TPV5_Kernels
+./TPV6_Kernels
+./TPV7_Kernels
+`Test_Problem.in`
+</pre></div>
+</div>
+<p>‘./data’ stores output data of the solution.</p>
+<p>‘./Input_files’ will have all the input files created.</p>
+<p>‘./src’ will have the main source files of the code.</p>
+<p>‘./src_Kernels’ will have source files only to generate the Kernels.</p>
+<p>‘./TPV3_Kernels’ will have kernels pre-computed for the input file  given in ‘./Input_files/TPV3.in’</p>
+<p>‘./TPV5_Kernels’ will have kernels pre-computed for the input file  given in ‘./Input_files/TPV5.in’</p>
+<p>‘./TPV6_Kernels’ will have kernels pre-computed for the input file  given in ‘./Input_files/TPV6.in’</p>
+<p>‘./TPV7_Kernels’ will have kernels pre-computed for the input file  given in ‘./Input_files/TPV7.in’</p>
+<p>‘Test_Problem.in’ will have a target problem to be solved during the execution of the code.</p>
+</section>
+<section id="code-compilation-and-testing">
+<h2>Code Compilation and Testing<a class="headerlink" href="#code-compilation-and-testing" title="Link to this heading"></a></h2>
+<p>You can now compile TBSBIEM with following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">TBSBIEM</span>
+<span class="n">cd</span> <span class="n">src</span>
+<span class="n">make</span> <span class="n">TEST</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">cd</span> <span class="o">..</span>
+<span class="o">./</span><span class="n">TBSBIEM</span><span class="o">-</span><span class="n">v1</span><span class="mf">.1.0</span><span class="o">-</span><span class="n">TEST</span>
+</pre></div>
+</div>
+<p>On running the test run, USGS/SCEC benchmark TPV3 problem will be solved. The output data is stored in the directory ‘./data’. One can use the procedure given in the section <em>‘Post-Processing’</em>, to plot the results.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="TBSBIEM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Code_Usage.html" class="btn btn-neutral float-right" title="Code Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Yenike Sharath Chandra Mouli and Ranjith Kunnath.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
