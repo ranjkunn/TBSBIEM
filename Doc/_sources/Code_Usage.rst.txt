@@ -1,0 +1,137 @@
+Code Usage
+#############
+This section demonstrates how to use the code to solve USGS/SECE benchmark problems TPV3, TPV5, TPV6, and TPV7. 
+
+
+Input files
+***************
+The input file that we have created is an automatic feed of the data into the code during the execution. One can create new input file according to their fault plane dimensions, following the input variable data given in example input files.
+
+An example input file is given as follows::
+
+   TPV_No   :Enter the TPV problem number being solved (enter only, 3,5,6, and 7).
+   3
+   L1rpt    : The length of slip-weakening interface size in X1 direction
+   30000.d0
+   L3rpt    : The length of slip-weakening interface size in X3 direction
+   15000.d0
+   L3       : The total length of planer interface in X1 direction
+   45000.d0
+   L3       : The total length of planer interface in X3 direction
+   22500.d0
+   nele     :  (nele1) Total number of elements in X1-direction (Should be the powers of 2)
+   768
+   nele3    : Total number of elements in X3-direction (Should be the powers of 2)
+   384
+   Csm      : The shear wave speed of lower half-space
+   3464.d0
+   Cdm      : Dilation wave speed of lower half-space
+   6000.d0
+   Rom      : The density of lower half-space
+   2670.d0
+   nu       : Poisson's ratio
+   0.25d0
+   csratio  : csratio of lower and top half-space
+   1.0d0
+   cdratio  : cdratio of lower and top half-space
+   1.0d0
+   Roratio  : Roratio of lower and top half-space
+   1.0d0
+   DeltaC   : Critical slip-weakening distance 
+   0.4d0
+   betaa    : Courant parameter
+   0.40
+   gamma    : Non-dimensionalised time step
+   0.005d0
+   Tend     : Total rupture duration time (in sec) 
+   12.050d0
+   mus0     :  Static coefficient of friction
+   0.677d0
+   mur0     :  Dynamic coefficient of friction
+   0.525d0
+   T0nu     : Neucliation shear stress at the center in (MPa) for TPV3, TPV5, TPV6, and TPV7.
+   81.6d0            
+   T0nuL    : Neucliation shear stress at the left in (MPa) for TPV5. Use T0bg for TPV3, TPV6 and TPV7.
+   70.0d0
+   T0nuR    : Neucliation shear stress at the right in (MPa) for TPV5. Use T0bg for TPV3, TPV6 and TPV7.
+   70.0d0           
+   T0bg     : Shear stress outside of the nucleation patch (background shear stress) in (MPa).
+   70.0d0
+   Tn0      : Initial Normal stress in (MPa)
+   -120.0d0
+   Pre_Kernels    : Give input as 0 if kernels to be calculated and stored in folder ./Kernels
+   Pre_Kernels    : Give input as 1 if kernels are calculated a priori and stored in folder ./Kernels
+   1
+
+Each parameter can be changed and a new input file can be fed for solving problems.
+
+**Note:** There are three square nucleation zones in TPV5. One can change the locations of the nucleation zones inside the code as and when required.
+
+Kernel Data
+***************
+
+We have provided the precomputed Kernels for USGS/SCEC benchmark problems TPV3, TPV5, TPV6, and TPV7 with the mesh size that we have choosen to solve the problem. 
+
+However, if you want to compute the kernels, a seperate directory with source code is provided. One can generate the Kernels using the following steps::
+
+  cd TBSBIEM
+  cd src_Kernels
+  make
+  cd ..
+  ./Kernel_Check
+  
+or one can generate the Kernels during the simulation as well.  
+  
+Just provide '0' at `Pre_Kernels` prompt in the input file, the code will generat and store in a directory given like `TPV5_Kernels` for example.
+
+
+**Note:** If you provide '1' at `Pre_Kernels` prompt in the input file, the code will search for kernles with no kernles generated. Thus be carefull if you need to generat the kernels provide '0' at `Pre_Kernels` prompt in the input file.
+
+
+Running a Simulation
+*********************
+The code is provided with several input files to solve USGS/SCEC benchmark problems. Namely, TPV3, TPV5, TPV6 and TPV7. One can solve these benchmark problems changing a problem name in **Test_Problem.in** file.
+
+For example, if you want to solve TPV6 problem then store the string::
+
+   TPV6
+
+in the file **Test_Problem.in**
+
+Compile and execute the code::
+
+      cd TBSBIEM
+      cd src
+      make
+      cd ..
+      ./TBSBIEM-v1.1.0
+
+
+The problem TPV6 will be sovled and the data will be stored in the directory './data'.
+
+Post-Processing
+*********************
+
+For a quick plotting one can use the gnuplot script given below to plot the contour plots on the fault plane as::
+
+   for i in {0001..0015}; do    gnuplot -e "set terminal jpeg; set hidden3d; set xlabel 'x1 (km)'; set ylabel 'x3 (km)'; set zlabel 'Slip (m)'; set xrange [-15:15]; set yrange [-7.5:7.5];   set zrange [0.0:0.5]; set cbrange [0.0:0.5]; set view map; splot './data/TPV3_Out$i.dat' u 2:3:4 ps 0.1 palette" > Slip_Top$i.jpeg; done 
+   
+The example script generate a contour plot of rupture front with duration intervel of 0.5 Sec on  the fault plan for TPV3 benchmark problem.
+
+Or we have given gnuplot script in './Post_Processing' directory using which one can generate the contour plot with time intervel of 1 Sec. One need to chnage the variable *Problem_no* to respective TPV problem required to plot out of 3,5,6 and 7.
+
+On can create an interesting video using ffmpeg cammand as::
+
+   ffmpeg -r 10 -i Slip_Top%04d.jpeg  -vf "fps=10" Slip_Top.mp4
+   
+**Note:** To plot these figure and the video generation one needs to install gnuplot and ffmpeg. The installation commands are as follows::
+
+   sudo apt update
+   sudo apt upgrade
+   sudo apt install gnuplot  
+   sudo apt install ffmpeg -y
+
+
+Comparison of Results
+----------------------------
+We have provided MATLAB scripts and the benchmark data for TPV5. TPV6, and TPV7 to plot the contour plots and the various field variables at spesific station points. The plots generated from the scripts provides the results of TBSBIEM and compares with the results of Spectral BIEM codes openly avilable in SCEC website.
