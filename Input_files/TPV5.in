@@ -1,0 +1,80 @@
+**Problem_Info**
+TPV_No   : Enter the TPV problem being solved (enter TPV3, TPV5, TPV6, and TPV7). Set as TEST if testing any other problem.
+TPV5
+**Fault Geometry**
+L1rpt    : The length of slip-weakening interface/rupture zone  size in X1 direction in mts
+30000.d0
+L3rpt    : The length of slip-weakening interface/rupture zone size in X3 direction in mts
+15000.d0
+Xr_Ratio: Ratio of (rupture zone + barrier zone)  to rupture zone. i.e., (rupture zone + barrier zone)/rupture zone
+2d0
+Z_SYMM   : Specify 'T' if symmeric boundary conditions need to used else give 'F'. For TPV3 - F  , and for TPV5,TPV6,TPV7 - T.
+T
+**Mesh Info**
+nele1    :  (nele1) Total number of elements in X1-direction (Should be the powers of 2)
+768
+nele3    : Total number of elements in X3-direction (Should be the powers of 2)
+384
+**Material Info**
+Csm      : The shear wave speed of lower half-space  in mts/sec
+3464d0
+Cdm      : Dilatational wave speed of lower half-space  in mts/sec
+6000d0
+Rom      : The density of lower half-space  in kg/m³
+2670d0
+nu       : Poisson's ratio
+0.25d0
+csratio  : csratio of top half-space to lower half-space
+1.0d0
+cdratio  : cdratio of top half-space to lower half-space
+1.0d0
+Roratio  : Roratio of top half-space to lower half-space
+1.0d0
+**Simulation Info**
+Tend     : Total rupture duration time in sec
+12.05d0
+betaa    : Courant parameter (CFL parameter)
+0.4d0
+gamma    : Non-dimensionalised time step (Refinement in Kernel interpolation.)
+0.005d0
+**Kernel Info**
+input    : Give input as 0 if kernels to be calculated and stored in folder ./Kernels
+input    : Give input as 1 if kernels are calculated a priori and stored in folder ./Kernels
+1
+**Background Frictional Properties**
+mus0     :  Static coefficient of friction
+0.677d0
+mur0     :  Dynamic coefficient of friction
+0.525d0
+DeltaC   : Critical slip-weakening distance 
+0.4d0
+** Background Stresses** T0bg(1),T0bg(2),T0bg(3) in N/m^2
+70d6  -120d6   0d0
+**Neucleation Zone List** (Only rectangular and square neuclzones are modeled).  Note: x12>x11 and x32>x31
+No_neucles : No.of Neucleation Zones. If no Zones, give one line as 0,0,0,0,70,-120,0. If yes, add lines with x11,x31,x12,x32,tau1, tau2, tau3.
+3
+-1.5d3   -9d3  1.5d3   -6d3  81.6d6 -120d6  0d6
+-9d3   -9d3   -6d3   -6d3  78d6 -120d6  0d6
+6d3    -9d3   9d3    -6d3  62d6 -120d6  0d6
+**Asperity Zone List** (Only circular asperities are modeled)
+No_Asps : No.of Asperity Zones. If no Zones, No_Asps = 0 add nothing. If yes, add No_Asps lines with Asps_x, Asps_y,Asps_radii,Asps_mus0,Asps_mur0.
+0
+** Coordinates of output station points** x_i Y_i
+NStations: No. of Station points. Followed by coordinates of the station points in mts
+16
+-12d3   0d3
+-12d3   -7.5d3
+-7.5d3 0d3
+-7.5d3  -7.5d3
+-4.5d3  0d3
+-4.5d3  -7.5d3
+0d3  0d3
+0d3  -7.5d3
+0d3  -3d3
+0d3  -12d3
+4.5d3  0d3
+4.5d3  -7.5d3
+7.5d3 0d3
+7.5d3  -7.5d3
+12d3   0d3
+12d3   -7.5d3
