@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Usage &mdash; TBSBIEM 2025.0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=cfcb26ae"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Formulation" href="Formulation.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TBSBIEM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#input-files">Input files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kernel-data">Kernel Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-a-simulation">Running a Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#post-processing">Post-Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comparison-of-results">Comparison of Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Formulation.html">Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TBSBIEM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Code Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Code_Usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="code-usage">
+<h1>Code Usage<a class="headerlink" href="#code-usage" title="Link to this heading"></a></h1>
+<p>This section demonstrates how to use the code to solve USGS/SECE benchmark problems TPV3, TPV5, TPV6, and TPV7.</p>
+<section id="input-files">
+<h2>Input files<a class="headerlink" href="#input-files" title="Link to this heading"></a></h2>
+<p>The input file that we have created is an automatic feed of the data into code during the execution. One can create a new input file according to their fault plane dimensions, following the input variable data given in example input files.</p>
+<p>An example input file is given as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>**Problem_Info**
+TPV_No   : Enter the TPV problem being solved (enter TPV3, TPV5, TPV6, and TPV7). Set as TEST if testing any other problem.
+TPV3
+**Fault Geometry**
+L1rpt    : The length of slip-weakening interface/rupture zone  size in X1 direction in mts
+30000.d0
+L3rpt    : The length of slip-weakening interface/rupture zone size in X3 direction in mts
+15000.d0
+Xr_Ratio: Ratio of (rupture zone + barrier zone)  to rupture zone. i.e., (rupture zone + barrier zone)/rupture zone
+2d0
+Z_SYMM   : Specify &#39;T&#39; if symmeric boundary conditions need to used else give &#39;F&#39;. For TPV3 - F  , and for TPV5,TPV6,TPV7 - T.
+F
+**Mesh Info**
+nele1    :  (nele1) Total number of elements in X1-direction (Should be the powers of 2)
+768
+nele3    : Total number of elements in X3-direction (Should be the powers of 2)
+384
+**Material Info**
+Csm      : The shear wave speed of lower half-space  in mts/sec
+3464d0
+Cdm      : Dilatational wave speed of lower half-space  in mts/sec
+6000d0
+Rom      : The density of lower half-space  in kg/m³
+2670d0
+nu       : Poisson&#39;s ratio
+0.25d0
+csratio  : csratio of top half-space to lower half-space
+1.0d0
+cdratio  : cdratio of top half-space to lower half-space
+1.0d0
+Roratio  : Roratio of top half-space to lower half-space
+1.0d0
+**Simulation Info**
+Tend     : Total rupture duration time in sec
+12.05d0
+betaa    : Courant parameter (CFL parameter)
+0.4d0
+gamma    : Non-dimensionalised time step (Refinement in Kernel interpolation.)
+0.005d0
+**Kernel Info**
+input    : Give input as 0 if kernels to be calculated and stored in folder ./Kernels
+input    : Give input as 1 if kernels are calculated a priori and stored in folder ./Kernels
+1
+**Background Frictional Properties**
+mus0     :  Static coefficient of friction
+0.677d0
+mur0     :  Dynamic coefficient of friction
+0.525d0
+DeltaC   : Critical slip-weakening distance
+0.4d0
+** Background Stresses** T0bg(1),T0bg(2),T0bg(3) in N/m^2
+70d6  -120d6   0d0
+**Neucleation Zone List** (Only rectangular and square neuclzones are modeled).  Note: x12&gt;x11 and x32&gt;x31
+No_neucles : No.of Neucleation Zones. If no Zones, give one line as 0,0,0,0,70,-120,0. If yes, add lines with x11,x31,x12,x32,tau1, tau2, tau3.
+1
+-1.5d3   -1.5d3  1.5d3   1.5d3  81.6d6 -120d6  0d6
+**Asperity Zone List** (Only circular asperities are modeled)
+No_Asps : No.of Asperity Zones. If no Zones, No_Asps = 0 add nothing. If yes, add No_Asps lines with Asps_x, Asps_y,Asps_radii,Asps_mus0,Asps_mur0.
+0
+** Coordinates of output station points** x_i Y_i
+NStations: No. of Station points. Followed by coordinates of the station points in mts
+2
+0d3   3d3
+7.5d3 0d3
+</pre></div>
+</div>
+<p>Each parameter can be changed and a new input file can be fed for solving problems.</p>
+</section>
+<section id="kernel-data">
+<h2>Kernel Data<a class="headerlink" href="#kernel-data" title="Link to this heading"></a></h2>
+<p>We have provided the precomputed Kernels for USGS/SCEC benchmark problems TPV3, TPV5, TPV6, and TPV7 with the mesh size that we have choosen to solve the problem.</p>
+<p>However, if you want to compute the kernels, a seperate directory with source code is provided. One can generate the Kernels using the following steps:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">TBSBIEM</span>
+<span class="n">cd</span> <span class="n">src_Kernels</span>
+<span class="n">make</span>
+<span class="n">cd</span> <span class="o">..</span>
+<span class="o">./</span><span class="n">Kernel_Check</span>
+</pre></div>
+</div>
+<p>or one can generate the Kernels during the simulation as well.</p>
+<p>Just provide ‘0’ at <cite>Pre_Kernels</cite> prompt in the input file, the code will generate and store in a directory given like <cite>TPV5_Kernels</cite> for example.</p>
+<p><strong>Note:</strong> If you provide ‘1’ at <cite>Pre_Kernels</cite> prompt in the input file, the code will search for kernles with no kernels generated. Thus be carefull if you need to generat the kernels provide ‘0’ at <cite>Pre_Kernels</cite> prompt in the input file.</p>
+</section>
+<section id="running-a-simulation">
+<h2>Running a Simulation<a class="headerlink" href="#running-a-simulation" title="Link to this heading"></a></h2>
+<p>The code is provided with several input files to solve USGS/SCEC benchmark problems. Namely, TPV3, TPV5, TPV6 and TPV7. One can solve these benchmark problems changing a problem name in <strong>Test_Problem.in</strong> file.</p>
+<p>For example, if you want to solve TPV6 problem then store the string:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TPV6</span>
+</pre></div>
+</div>
+<p>in the file <strong>Test_Problem.in</strong></p>
+<p>Compile and execute the code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">TBSBIEM</span>
+<span class="n">cd</span> <span class="n">src</span>
+<span class="n">make</span>
+<span class="n">cd</span> <span class="o">..</span>
+<span class="o">./</span><span class="n">TBSBIEM</span><span class="o">-</span><span class="n">v1</span><span class="mf">.1.0</span>
+</pre></div>
+</div>
+<p>The problem TPV6 will be solved and the data will be stored in the directory ‘./data’.</p>
+</section>
+<section id="post-processing">
+<h2>Post-Processing<a class="headerlink" href="#post-processing" title="Link to this heading"></a></h2>
+<p>This
+For a quick plotting one can use the gnuplot script given below to plot the contour plots on the fault plane as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i in {0001..0015}; do    gnuplot -e &quot;set terminal jpeg; set hidden3d; set xlabel &#39;x1 (km)&#39;; set ylabel &#39;x3 (km)&#39;; set zlabel &#39;Slip (m)&#39;; set xrange [-15:15]; set yrange [-7.5:7.5];   set zrange [0.0:0.5]; set cbrange [0.0:0.5]; set view map; splot &#39;./data/TPV3_Out$i.dat&#39; u 2:3:4 ps 0.1 palette&quot; &gt; Slip_Top$i.jpeg; done
+</pre></div>
+</div>
+<p>The example script generate a contour plot of rupture front with duration intervel of 0.5 Sec on  the fault plan for TPV3 benchmark problem.</p>
+<p>Or we have given gnuplot script in ‘./Post_Processing’ directory using which one can generate the contour plot with time intervel of 1 Sec. One need to change the variable <em>Problem_no</em> to respective TPV problem required to plot out of 3,5,6 and 7.</p>
+<p>On can create an interesting video using ffmpeg cammand as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ffmpeg</span> <span class="o">-</span><span class="n">r</span> <span class="mi">10</span> <span class="o">-</span><span class="n">i</span> <span class="n">Slip_Top</span><span class="o">%</span><span class="mi">04</span><span class="n">d</span><span class="o">.</span><span class="n">jpeg</span>  <span class="o">-</span><span class="n">vf</span> <span class="s2">&quot;fps=10&quot;</span> <span class="n">Slip_Top</span><span class="o">.</span><span class="n">mp4</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> To plot these figure and the video generation one needs to install gnuplot and ffmpeg. The installation commands are as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">upgrade</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">gnuplot</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">ffmpeg</span> <span class="o">-</span><span class="n">y</span>
+</pre></div>
+</div>
+<section id="comparison-of-results">
+<h3>Comparison of Results<a class="headerlink" href="#comparison-of-results" title="Link to this heading"></a></h3>
+<p>We have provided GNUPLOT scripts and the benchmark data of MDBSI for TPV3, TPV5, TPV6, and TPV7 to plot the various field variables at specific station points. The plots generated from the scripts provides the comparison of results between  TBSBIEM and MDSBI.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Formulation.html" class="btn btn-neutral float-right" title="Formulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Yenike Sharath Chandra Mouli and Ranjith Kunnath.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

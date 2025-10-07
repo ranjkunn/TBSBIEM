@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulation &mdash; TBSBIEM 2025.0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=cfcb26ae"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Code Usage" href="Code_Usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TBSBIEM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Code_Usage.html">Code Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Formulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spectral-biem">Spectral BIEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interface-law">Interface Law</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linear-slip-weakening-law">Linear Slip-Weakening law</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TBSBIEM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Formulation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Formulation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="formulation">
+<h1>Formulation<a class="headerlink" href="#formulation" title="Link to this heading"></a></h1>
+<figure class="align-center" id="id3">
+<span id="fault-plane-fig"></span><img alt="Interfac_Plane" src="_images/Three_Dimensional_interface.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">A three-dimensional rupture propagation in a plane.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Consider a 3D fracture plane as given shown in <a class="reference internal" href="#fault-plane-fig"><span class="std std-numref">Fig. 1</span></a>. The elastodynamic equations at the interface between two dissimilar elastic half-spaces is given as follows (<a class="reference external" href="https://doi.org/10.1016/0021-8928(66)90087-6">Kostrov, 1966</a>; <a class="reference external" href="https://dx.doi.org/10.1002/nag.3632">Gupta and Ranjith, 2024</a>):</p>
+<div class="math notranslate nohighlight">
+\[A_{ij}(\tau_{i}(x_1,x_3,t)-\tau_{i}^0(x_1,x_3,t))+ \dot{\delta}_i(x_1,x_3,t) = f_i (x_1,x_3,t)\]</div>
+<p>where,  <span class="math notranslate nohighlight">\(x_i\)</span> is a Cartesian coordinate system, with <span class="math notranslate nohighlight">\(x_1-x_3\)</span> plane being the plane of interface and time <span class="math notranslate nohighlight">\(t\)</span>.  <span class="math notranslate nohighlight">\(\left[A_{ij} \right]\)</span> is a diagonal matrix with <span class="math notranslate nohighlight">\(A_{11} = A_{33} = \frac{c_s^+}{\mu^+}\)</span>, <span class="math notranslate nohighlight">\(A_{22} = \frac{c_d^+}{\lambda^+ + 2 \mu^+}+\frac{c_d^-}{\lambda^- + 2 \mu^-}\)</span>. <span class="math notranslate nohighlight">\(\tau_{i}\)</span>’s are the traction components at the interface with stresses at the interface being <span class="math notranslate nohighlight">\(\tau_{i}(x_1,x_3,t)= \sigma_{i2}(x_1,x_2^{\pm},x_3,t)\)</span>. <span class="math notranslate nohighlight">\(\dot{\delta}_i\)</span> is the rate of discontinuity at the interface with <span class="math notranslate nohighlight">\(\delta_i\)</span> given in terms of displacements <span class="math notranslate nohighlight">\(u_i\)</span> of the two half-spaces as <span class="math notranslate nohighlight">\(\delta_i = u_i^+ - u_i^-\)</span>.  The superscripts “<span class="math notranslate nohighlight">\(\pm\)</span>” refer to field quantities corresponding to the top and lower half-space, respectively. <span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> are the Lame's parameters. The shear and dilatational wave speeds are given by <span class="math notranslate nohighlight">\(c_s = \sqrt{\mu/\rho}\)</span> and <span class="math notranslate nohighlight">\(c_d = \sqrt{(\lambda +2\mu )/\rho}\)</span>, respectively, with <span class="math notranslate nohighlight">\(\rho\)</span> being the density of the elastic half-space. The functionals <span class="math notranslate nohighlight">\(f_i\)</span>’s involve the spatio-temporal convolutions of traction components at the interface.</p>
+<section id="spectral-biem">
+<h2>Spectral BIEM<a class="headerlink" href="#spectral-biem" title="Link to this heading"></a></h2>
+<p>In spectral BIEM, the field quantities traction and slip (displacement discontinuities) at the interface are taken in spectral form as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{Bmatrix}
+\tau_j(x_1,x_3,t) \\
+\delta_j(x_1,x_3,t) \\
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+T_j(t;k,m) \\
+D_j(t;k,m) \\
+\end{Bmatrix}
+e^{i(kx_1+mx_3)},\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(m\)</span> are wave numbers in <span class="math notranslate nohighlight">\(x_1\)</span> - and <span class="math notranslate nohighlight">\(x_3\)</span> - directions. Let, <span class="math notranslate nohighlight">\(q = (k , m)\)</span> is a two-dimensional wave vector, with a magnitude <span class="math notranslate nohighlight">\(q=\sqrt{k^2 + m^2}\)</span>.</p>
+<p>We get the 3D Spectral BIEM relations (see. Eq. 19 in <a class="reference external" href="https://dx.doi.org/10.1002/nag.3632">Gupta and Ranjith, 2024</a>) at the interface of two dissimilar half-spaces as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+\frac{c_s^+}{\mu^+} \eta T_1 \left( t; k, m \right) + \frac{\partial D_1\left(t; k, m \right)}{\partial t} \\
+\frac{c_s^+}{\mu^+} \xi T_2 \left( t; k, m \right) + \frac{\partial D_2\left(t; k, m \right)}{\partial t} \\
+\frac{c_s^+}{\mu^+} \eta T_3 \left( t; k, m \right) + \frac{\partial D_3\left(t; k, m \right)}{\partial t}
+\end{bmatrix}
+=
+\begin{bmatrix}
+F_1 \left( t; k, m \right) \\
+F_2 \left( t; k, m \right) \\
+F_3 \left( t; k, m \right)
+\end{bmatrix}\end{split}\]</div>
+<p>where, <span class="math notranslate nohighlight">\(\eta = \left( 1+ \frac{c_s^-}{c_s^+}\frac{\mu^+}{\mu^-}\right)\)</span> and <span class="math notranslate nohighlight">\(\xi = \left( \frac{c_s^+}{c_d^-} + \frac{c_s^-}{c_s^+}\frac{\mu^+}{\mu^-}\frac{c_s^-}{c_d^-}\right)\)</span>, and the convolution terms are given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{Bmatrix}
+F_1 \left( t; k, m \right) \\
+ F_2 \left( t; k, m \right) \\
+ F_3 \left( t; k, m \right)
+\end{Bmatrix} = \int_0^t
+ \begin{bmatrix}
+     C_{11} \left( t'; q \right) &amp; C_{12} \left( t'; q \right) &amp; C_{13} \left( t'; q \right) \\
+     C_{21} \left( t'; q \right) &amp; C_{22} \left( t'; q \right) &amp; C_{23} \left( t'; q \right) \\
+     C_{31} \left( t'; q \right) &amp; C_{32} \left( t'; q \right) &amp; C_{33} \left( t'; q \right)
+ \end{bmatrix}
+ \begin{bmatrix}
+     T_1 \left( t - t'; k, m \right) \\
+     T_2 \left( t - t'; k, m \right) \\
+     T_3 \left( t - t'; k, m \right)
+ \end{bmatrix} dt'\end{split}\]</div>
+<p>In the above equation, we have five independent convolution kernels which can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C_{11} (t; q) = \frac{1}{q^2} [k^2 (M_{11}^+ + M_{11}^-) + m^2 (M_{33}^+ + M_{33}^-)]
+\\
+C_{22}(t; q) = M_{22}^+ + M_{22}^-
+\\
+C_{33}(t; q) = \frac{1}{q^2} [m^2 (M_{11}^+ + M_{11}^-) + k^2 (M_{33}^+ + M_{33}^-)]
+\\
+C_{12}(t; q) = \frac{k}{m} C_{22}(t; q) = -\frac{m}{k} C_{33}(t; q) = -C_{21}(t; q) = \frac{k}{q^2} [M_{12}^+ - M_{12}^-]
+\\
+C_{13}(t; q) = C_{31}(t; q) = \frac{km}{q^2} [ (M_{11}^+ + M_{11}^-) - (M_{33}^+ + M_{33}^-) ]\end{split}\]</div>
+<p>All above convolution kernels <span class="math notranslate nohighlight">\(\left( C_{ij}(t; q) \right)\)</span> can be expressed in closed form. The convolution kernels <span class="math notranslate nohighlight">\(M_{11}(t; q), M_{12}(t; q), M_{22}(t; q)\)</span> and <span class="math notranslate nohighlight">\(M_{33}(t; q)\)</span> can be written as in the Appendix of <a class="reference external" href="https://dx.doi.org/10.1002/nag.3632">Gupta and Ranjith, 2024</a>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+M_{11}(t; q) =&amp; c_s \frac{c_s}{\mu} |q| \Bigg\lbrace
+- \int_0^1 \frac{g(y) - g(y_R)}{y - y_R} y \sin(|q| c_s t) \, dy \\
+&amp; + g(y_R) \Bigg[y_R \sin(|q| c_R t) \int_{|q|c_s t - |q|c_R t}^{|q|c_s t + |q|c_R t} \cos \theta \, d\theta
+- y_R \cos(|q|c_R t) \int_{-|q|c_R t}^{|q|c_R t} \sin\theta \, d\theta
+\Bigg] \\
+&amp; + g(y_R) \frac{\cos(|q|c_s t) - 1}{|q| c_s t} \frac{2}{\pi}
+\int_1^a \frac{4(1-y^2)\sqrt{1-y^2/a^2}}{(y^2 - y_R^2)(y^2-y_1^2)(y^2-y_2^2)} y \sin(|q|c_s t) \, dy
+\Bigg\rbrace
+\end{split}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+M_{22}(t; q) =&amp; c_s \frac{c_s}{\mu} |q| \Bigg\lbrace
+- \int_0^1 \frac{f(y) - f(y_R)}{y - y_R} y \sin(|q| c_s t) \, dy \\
+&amp; + f(y_R) \Bigg[
+y_R \sin(|q| c_R t) \int_{|q|c_s t - |q|c_R t}^{|q|c_s t + |q|c_R t} \cos \theta \, d\theta
+- y_R \cos(|q|c_R t) \int_{-|q|c_R t}^{|q|c_R t} \sin\theta \, d\theta
+\Bigg] \\
+&amp; + f(y_R) \frac{\cos(|q|c_s t) - 1}{|q| c_s t} \frac{2}{\pi}
+\int_1^a \frac{(2-y^2)\sqrt{1-y^2/a^2}}{(y^2 - y_R^2)(y^2-y_1^2)(y^2-y_2^2)} y \sin(|q|c_s t) \, dy
+\Bigg\rbrace
+\end{split}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+M_{12}(t; q) =&amp; -iq c_s \frac{c_s}{\mu} \frac{2}{\pi} \int_1^a
+\Bigg[
+\frac{2y\sqrt{2 - 1 - y^2 / a^2}(2-y^2)}{(y_R^2 - y^2)(y_1^2 - y^2)(y_2^2 - y^2)}
+\cos(y|q|c_s t) \\
+&amp; + \frac{-8y_R^2/a^2 + 8/a^2 - y_R^4 + 4 + 6y_R^2 + 2\sqrt{1-y_R^2/a^2}(2-y_R^2)}{(y_1^2 - y_R^2)(y_2^2 - y_R^2)} \cos(|q|c_R t)
+\Bigg]
+\end{split}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[M_{33}(t; q) = c_s \frac{c_s}{\mu}
+J_1(|q|c_s t)\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[g(y) = \frac{2}{\pi} \frac{4\,(1-y^2)\, \sqrt{1-y^2/a^2} + (2-y^2)^2 \sqrt{1-y^2}}{(y + y_R) \, (y^2 - y_1^2)\, (y^2 - y_2^2)}\]</div>
+<div class="math notranslate nohighlight">
+\[f(y) = \frac{2}{\pi} \frac{4\,(1-y^2/a^2)\, \sqrt{1-y^2} + (2-y^2)^2 \sqrt{1-y^2/a^2}}{(y + y_R) \, (y^2 - y_1^2)\, (y^2 - y_2^2)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(s = p / \|q\| c_s, a = c_d / c_s\)</span>, and <span class="math notranslate nohighlight">\(y_R = c_R / c_s\)</span>. <span class="math notranslate nohighlight">\(c_R\)</span> is the Rayleigh wave speed.</p>
+</section>
+<section id="interface-law">
+<h2>Interface Law<a class="headerlink" href="#interface-law" title="Link to this heading"></a></h2>
+<p>We have incorporated the classical linear friction slip-weakening law in the code. The frictional coefficients are vectorized over the fault plane so that one can analyze the effect of local heterogeneities. One can look into the <cite>main.cuf</cite> in the <cite>./src</cite> directory to add more frcitional law as an when necessary.</p>
+<section id="linear-slip-weakening-law">
+<h3>Linear Slip-Weakening law<a class="headerlink" href="#linear-slip-weakening-law" title="Link to this heading"></a></h3>
+<p>The linear slip-weakening friction law is as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\tau_2^{*}(\delta) = \tau_2 \begin{cases}
+    \mu_s -(\mu_s - \mu_r) \frac{\delta}{\delta_{c}}, &amp; \text{if $\delta &lt; \delta_c$}\\
+        \mu_r, &amp; \text{otherwise}
+\end{cases}\end{split}\]</div>
+<p>where, <span class="math notranslate nohighlight">\(\tau_2^{*}\)</span> is the effective shear strength of fault plane, <span class="math notranslate nohighlight">\(\delta=\sqrt{(\delta_1^2 + \delta_3^2)}\)</span> is the effective slip, and <span class="math notranslate nohighlight">\(\delta_{c}\)</span> is the critical slip-weakening distance. <span class="math notranslate nohighlight">\(\mu_s\)</span> and <span class="math notranslate nohighlight">\(\mu_r\)</span> are the static and residual frictional coefficients, respectively.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Code_Usage.html" class="btn btn-neutral float-left" title="Code Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Yenike Sharath Chandra Mouli and Ranjith Kunnath.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

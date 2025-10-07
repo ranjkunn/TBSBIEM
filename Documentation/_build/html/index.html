@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TBSBIEM &mdash; TBSBIEM 2025.0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=cfcb26ae"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quickstart" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            TBSBIEM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Code_Usage.html">Code Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Formulation.html">Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">TBSBIEM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">TBSBIEM</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tbsbiem">
+<h1>TBSBIEM<a class="headerlink" href="#tbsbiem" title="Link to this heading"></a></h1>
+<p>TBSBIEM is an open-source Fortran code for the simulation of spontaneous 3D dynamic rupture propagation on a planar homogeneous or bi-material interface based on 3D Spectral Boundary Integral Equation Method by <a class="reference external" href="https://doi.org/10.1002/nag.3632">Gupta and Ranjith (2024)</a>. This method is based on traction formulation unlike the displacement formulation of <a class="reference external" href="http://www.sciencedirect.com/science/article/pii/002250969500043I">Geubelle and Rice (1995)</a>. The key advantage of this formulation is that it requires half the convolution integrals to solve bi-material interface dynamic ruture problems when compared to that of displacement formultaion. In addition, all convolution kernels are expressed in close-form for the bi-material interface problem, whereas some kernels are evaluated numerically in the displacement formulation.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Table of Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#openmp-installation">OpenMP Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#nvidia-hpcsdk-and-cuda-toolkit-installation">NVIDIA HPCSDK and CUDA Toolkit Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#nvidia-hpcsdk">NVIDIA HPCSDK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#cuda-toolkit">CUDA toolkit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#code-structure">Code Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#building-the-docs">Building the docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#code-compilation-and-testing">Code Compilation and Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Code_Usage.html">Code Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Code_Usage.html#input-files">Input files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Code_Usage.html#kernel-data">Kernel Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Code_Usage.html#running-a-simulation">Running a Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Code_Usage.html#post-processing">Post-Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Code_Usage.html#comparison-of-results">Comparison of Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Formulation.html">Formulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Formulation.html#spectral-biem">Spectral BIEM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Formulation.html#interface-law">Interface Law</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Formulation.html#linear-slip-weakening-law">Linear Slip-Weakening law</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#usgc-scec-benchmark-problems">USGC/SCEC Benchmark Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#crack-front-wave-analysis">Crack Front Wave Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Yenike Sharath Chandra Mouli and Ranjith Kunnath.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
