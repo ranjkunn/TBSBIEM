@@ -16,9 +16,9 @@ nele1    :  (nele1) Total number of elements in X1-direction (Should be the powe
 nele3    : Total number of elements in X3-direction (Should be the powers of 2)
 384
 **Material Info**
-Csm      : The shear wave speed of lower half-space  in mts/sec
+Csm      : The shear wave speed of lower half-space  in m/s
 3464d0
-Cdm      : Dilatational wave speed of lower half-space  in mts/sec
+Cdm      : Dilatational wave speed of lower half-space  in m/s
 6000d0
 Rom      : The density of lower half-space  in kg/m³
 2670d0
@@ -31,7 +31,7 @@ cdratio  : cdratio of top half-space to lower half-space
 Roratio  : Roratio of top half-space to lower half-space
 1.0d0
 **Simulation Info**
-Tend     : Total rupture duration time in sec
+Tend     : Total rupture duration time in seconds
 12.05d0
 betaa    : Courant parameter (CFL parameter)
 0.4d0
@@ -62,3 +62,4 @@ NStations: No. of Station points. Followed by coordinates of the station points 
 2
 0d3   3d3
 7.5d3 0d3
+
