@@ -1,8 +1,8 @@
-Quickstart
+Quick start
 #############
 TBSBIEM is written in Fortran Language. The current version of code is tested in Debian based Ubuntu operating system. Hence, we stick our documentation how to use the code in Debian based Linux operating systems like Ubuntu. Code requires following prerequisites to compile and execute it smoothly.
 
-Prerequisites
+Prerequisites:
 ***************
 
 The following dependencies are required for TBSBIEM:
