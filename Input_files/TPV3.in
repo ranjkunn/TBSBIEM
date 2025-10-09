@@ -16,9 +16,9 @@ nele1    :  (nele1) Total number of elements in X1-direction (Should be the powe
 nele3    : Total number of elements in X3-direction (Should be the powers of 2)
 384
 **Material Info**
-Csm      : The shear wave speed of lower half-space  in mts/sec
+Csm      : The shear wave speed of lower half-space  in m/s
 3464d0
-Cdm      : Dilatational wave speed of lower half-space  in mts/sec
+Cdm      : Dilatational wave speed of lower half-space  in m/s
 6000d0
 Rom      : The density of lower half-space  in kg/m³
 2670d0
@@ -31,7 +31,7 @@ cdratio  : cdratio of top half-space to lower half-space
 Roratio  : Roratio of top half-space to lower half-space
 1.0d0
 **Simulation Info**
-Tend     : Total rupture duration time in sec
+Tend     : Total rupture duration time in seconds
 12.05d0
 betaa    : Courant parameter (CFL parameter)
 0.4d0
@@ -50,8 +50,8 @@ DeltaC   : Critical slip-weakening distance
 0.4d0
 ** Background Stresses** T0bg(1),T0bg(2),T0bg(3) in N/m^2
 70d6  -120d6   0d0
-**Neucleation Zone List** (Only rectangular and square neuclzones are modeled).  Note: x12>x11 and x32>x31
-No_neucles : No.of Neucleation Zones. If no Zones, give one line as 0,0,0,0,70,-120,0. If yes, add lines with x11,x31,x12,x32,tau1, tau2, tau3.
+**Nucleation Zone List** (Only rectangular and square neuclzones are modeled).  Note: x12>x11 and x32>x31
+No_neucles : No.of Nucleation Zones. If no Zones, give one line as 0,0,0,0,70d6,-120d6,0. If yes, add lines with x11,x31,x12,x32,tau1, tau2, tau3.
 1
 -1.5d3   -1.5d3  1.5d3   1.5d3  81.6d6 -120d6  0d6
 **Asperity Zone List** (Only circular asperities are modeled)
@@ -61,4 +61,5 @@ No_Asps : No.of Asperity Zones. If no Zones, No_Asps = 0 add nothing. If yes, ad
 NStations: No. of Station points. Followed by coordinates of the station points in mts
 2
 0d3   3d3
+
 7.5d3 0d3
