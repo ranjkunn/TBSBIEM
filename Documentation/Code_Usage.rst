@@ -61,7 +61,7 @@ An example input file is given as follows::
    0.4d0
    ** Background Stresses** T0bg(1),T0bg(2),T0bg(3) in N/m^2
    70d6  -120d6   0d0
-   **Nucleation Zone List** (Only rectangular and square neuclzones are modeled).  Note: x12>x11 and x32>x31
+   **Nucleation Zone List** (Only rectangular and square nucleation zones are modeled).  Note: x12>x11 and x32>x31
    No_neucles : No.of Nucleation Zones. If no Zones, give one line as 0,0,0,0,T0bg(1),T0bg(2),T0bg(3). If yes, add lines with x11,x31,x12,x32,tau1, tau2, tau3.
    1
    -1.5d3   -1.5d3  1.5d3   1.5d3  81.6d6 -120d6  0d6
