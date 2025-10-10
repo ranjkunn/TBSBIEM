@@ -24,11 +24,11 @@ Rom      : The density of lower half-space  in kg/m³
 2670d0
 nu       : Poisson's ratio
 0.25d0
-csratio  : csratio of top half-space to lower half-space
+csratio  : csratio of lower half-space to top half-space
 1.2d0
-cdratio  : cdratio of top half-space to lower half-space
+cdratio  : cdratio of lower half-space to top half-space
 1.2d0
-Roratio  : Roratio of top half-space to lower half-space
+Roratio  : Roratio of lower half-space to top half-space
 1.d0
 **Simulation Info**
 Tend     : Total rupture duration time in seconds
@@ -50,19 +50,19 @@ DeltaC   : Critical slip-weakening distance
 0.4d0
 ** Background Stresses** T0bg(1),T0bg(2),T0bg(3) in N/m^2
 70d6  -120d6   0d0
-**Neucleation Zone List** (Only rectangular and square neuclzones are modeled).  Note: x12>x11 and x32>x31
-No_neucles : No.of Neucleation Zones. If no Zones, give one line as 0,0,0,0,70d7,-120d6,0. If yes, add lines with x11,x31,x12,x32,tau1, tau2, tau3.
+**Neucleation Zone List** (Only rectangular and square nucleation zones are modeled).  Note: x12>x11 and x32>x31
+No_neucles : No.of Nucleation Zones. If no Zones, give one line as 0,0,0,0,T0bg(1),T0bg(2),T0bg(3). If yes, add lines with x11,x31,x12,x32,tau1, tau2, tau3.
 1
 -1.5d3   -9d3  1.5d3   -6d3  81.6d6 -120d6  0d6
 **Asperity Zone List** (Only circular asperities are modeled)
 No_Asps : No.of Asperity Zones. If no Zones, No_Asps = 0 add nothing. If yes, add No_Asps lines with Asps_x, Asps_y,Asps_radii,Asps_mus0,Asps_mur0.
 0
 ** Coordinates of output station points** x_i Y_i
-NStations: No. of Station points. Followed by coordinates of the station points in mts
+NStations: No. of Station points. Followed by coordinates of the station points in metres
 5
 -12d3   -7.5d3
 -12d3   0d3
 0d3  0d3
 12d3   0d3
-
 12d3   -7.5d3
+
