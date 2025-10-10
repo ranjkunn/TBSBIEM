@@ -102,7 +102,7 @@ Just provide '0' at `Pre_Kernels` prompt in the input file, the code will genera
 
 Running a Simulation
 *********************
-The code is provided with several input files to solve USGS/SCEC benchmark problems. Namely, TPV3, TPV5, TPV6 and TPV7. One can solve these benchmark problems changing a problem name in **Test_Problem.in** file.
+The code is provided with several input files to solve USGS/SCEC benchmark problems. Namely, TPV3, TPV5, TPV6 and TPV7. One can solve these benchmark problems changing a problem name in **TPV_Problem.in** file.
 
 For example, if you want to solve TPV6 problem then store the string::
 
