@@ -116,11 +116,6 @@ Reload environment and test::
 This should display the installed CUDA version.
 
 
-
-for the use of GPU acceleration using OpenACC directives. The "-acc" flag of openACC enables the use of GPU acceleration with OpenACC. The CUDA Toolkit is also suggested for the cuFFT used in the code, which use cuda programming in the Fortran language to generate discrete fast Fourier Transforms and their inverse with GPU acceleration. The -lcufft flag enables cuFFT.
-
-
-
 Code Structure
 ********************************
 To download the code, one can clone from the git repository using the command::
@@ -140,13 +135,13 @@ Now get into directory TBSBIEM, you will find following directories::
    ./TPV7_Kernels
    `Test_Problem.in`
 
-'./data' stores output data of the solution.
+'./data' stores the output data of the solution.
 
 './Input_files' will have all the input files created.
 
 './src' will have the main source files of the code.
 
-'./src_Kernels' will have source files only to generate the Kernels.
+'./src_Kernels' will contain source files only for generating the Kernels.
 
 './TPV3_Kernels' will have kernels pre-computed for the input file  given in './Input_files/TPV3.in'
 
@@ -165,7 +160,7 @@ Before building the documentation locally, you need to have Python, Sphinx, and 
    python -m pip install --upgrade pip
    pip install sphinx sphinx_rtd_theme
 
-To build the documentation locally, follow the commands below from TBSBIEM folder::
+To build the documentation locally, follow the commands below from the TBSBIEM folder::
 
    cd Documentation
    make html
@@ -174,13 +169,13 @@ The documentation will be built in the _build/html directory.
 
 Code Compilation and Testing
 ********************************
-You can now compile TBSBIEM with following commands::
+You can now compile TBSBIEM with the following commands::
 
   cd TBSBIEM
   cd src
-  make TEST-1
+  make TEST=1
   cd ..
   ./TBSBIEM-v1.1.0-TEST
 
-On running the test run, USGS/SCEC benchmark TPV3 problem will be solved. The output data is stored in the directory './data'. One can use the procedure given in the section *'Post-Processing'*, to plot the results.
+Upon running the test, the USGS/SCEC benchmark TPV3 problem will be solved. The output data is stored in the directory './data'. One can use the procedure given in the section *'Post-Processing'*, to plot the results.
 
