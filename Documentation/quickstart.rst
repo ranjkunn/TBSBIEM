@@ -161,6 +161,7 @@ Now get into directory TBSBIEM, you will find following directories::
 Building the docs
 ************************
 Before building the documentation locally, you need to have Python, Sphinx, and sphinx_rtd_theme installed in your system. Follow the commands given below to satisfy the prerequisites::
+
    python -m pip install --upgrade pip
    pip install sphinx sphinx_rtd_theme
 
