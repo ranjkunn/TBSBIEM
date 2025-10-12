@@ -18,7 +18,7 @@ An example input file is given as follows::
    L3rpt    : The length of slip-weakening interface/rupture zone size in X3 direction in mts
    15000.d0
    Xr_Ratio: Ratio of (rupture zone + barrier zone)  to rupture zone. i.e., (rupture zone + barrier zone)/rupture zone
-   2d0
+   2.56d0
    Z_SYMM   : Specify 'T' if symmetric boundary conditions need to used else give 'F'. For TPV3 - F  , and for TPV5,TPV6,TPV7 - T.
    F
    **Mesh Info**
@@ -43,9 +43,9 @@ An example input file is given as follows::
    1.0d0
    **Simulation Info**
    Tend     : Total rupture duration time in seconds
-   12.05d0
+   12d0
    betaa    : Courant parameter (CFL parameter)
-   0.4d0
+   0.3464d0
    gamma    : Non-dimensionalised time step (Refinement in Kernel interpolation.)
    0.005d0
    **Kernel Info**
