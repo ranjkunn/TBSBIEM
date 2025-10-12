@@ -128,7 +128,7 @@ Now get into directory TBSBIEM, you will find following directories::
    ./Input_files
    ./src
    ./src_Kernels
-   ./TBSBIEM_Documentation
+   ./Documentation
    ./TPV3_Kernels
    ./TPV5_Kernels
    ./TPV6_Kernels
