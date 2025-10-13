@@ -1,6 +1,6 @@
-# Plot data from any TPV Porblem by setting its no at Problem_str
+# Plot data from any TPV Problem by setting its no at Problem_str
 
-
+# Provide the problem name to be plotted as a string below.
 Problem_str = 'TPV7'
 
 # GNUplot script to generate slip contour plots
