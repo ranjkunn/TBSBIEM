@@ -61,7 +61,7 @@ No_Asps : No.of Asperity Zones. If no Zones, No_Asps = 0 add nothing. If yes, ad
 NStations: No. of Station points. Followed by coordinates of the station points in metres
 2
 0d3   3d3
-
 7.5d3 0d3
+
 
 
