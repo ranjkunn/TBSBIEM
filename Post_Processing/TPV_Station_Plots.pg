@@ -1,0 +1,403 @@
+# Plot data from any TPV Porblem by setting its no at Problem_str
+
+
+Problem_str = 'TPV7'
+
+# GNUplot script to generate slip contour plots
+
+set terminal jpeg
+set hidden3d
+
+
+
+if (Problem_str eq 'TEST') {
+   nplots = 2
+   array Station_MDSBI[16] 
+   Station_MDSBI[1] = './TPV3_Benchmark_Data_dunham/faultst000dp-045.txt'
+   Station_MDSBI[2] = './TPV3_Benchmark_Data_dunham/faultst075dp000.txt'
+   do for [i=1:nplots] {
+      index_str = sprintf("%02d", i)
+      MDSBI_file = Station_MDSBI[i]
+      TBSBIEM_file = sprintf("../data/%s_Station%s.dat", Problem_str, index_str)
+      output_file = sprintf("%s_Station_%s.jpeg", Problem_str, index_str)
+
+      set terminal jpeg enhanced
+      set output output_file
+
+      title_str = sprintf("%s Station %s", Problem_str, index_str)
+      set multiplot layout 2,3 title title_str
+      #set key font ",8"
+      unset key
+      set xlabel font ",8"
+      set ylabel font ",8"
+      set xtics font ",8"
+      set ytics font ",8"
+      set xlabel '{Time (Sec)}'
+      set xrange [0:12]   
+      
+      set ylabel '{Slip_1 (m)}'
+      plot MDSBI_file using 1:2 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:2 title 'TBSBIEM' with lines
+
+      set ylabel '{Slip_1 rate (m/s)}'
+      plot MDSBI_file using 1:3 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:3 title 'TBSBIEM' with lines
+
+      set ylabel '{Tau_1 (MPa)}'
+      plot MDSBI_file using 1:4 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:4 title 'TBSBIEM' with lines
+
+      
+      set ylabel '{Slip_3 (m)}'
+      set yrange [-0.03:0.03]
+      #set key outside bottom center font ",8" 
+      set key inside bottom center font ",6" 
+      plot MDSBI_file using 1:5 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:5 title 'TBSBIEM' with lines
+      unset key
+      
+      set ylabel '{Slip_3 rate (m/s)}'
+      plot MDSBI_file using 1:6 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:6 title 'TBSBIEM' with lines
+
+      set ylabel '{Tau_3 (MPa)}'
+      plot MDSBI_file using 1:7 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:7 title 'TBSBIEM' with lines                 
+      unset yrange 
+        unset multiplot
+        unset output
+    }
+}
+    
+
+
+if (Problem_str eq 'TPV3') {
+   nplots = 2
+   array Station_MDSBI[16] 
+   Station_MDSBI[1] = './TPV3_Benchmark_Data_dunham/faultst000dp-045.txt'
+   Station_MDSBI[2] = './TPV3_Benchmark_Data_dunham/faultst075dp000.txt'
+   do for [i=1:nplots] {
+      index_str = sprintf("%02d", i)
+      MDSBI_file = Station_MDSBI[i]
+      TBSBIEM_file = sprintf("../data/%s_Station%s.dat", Problem_str, index_str)
+      output_file = sprintf("%s_Station_%s.jpeg", Problem_str, index_str)
+
+      set terminal jpeg enhanced
+      set output output_file
+
+      title_str = sprintf("%s Station %s", Problem_str, index_str)
+      set multiplot layout 2,3 title title_str
+      #set key font ",8"
+      unset key
+      set xlabel font ",8"
+      set ylabel font ",8"
+      set xtics font ",8"
+      set ytics font ",8"
+      set xlabel '{Time (Sec)}'
+      set xrange [0:12]   
+      
+      set ylabel '{Slip_1 (m)}'
+      plot MDSBI_file using 1:2 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:2 title 'TBSBIEM' with lines
+
+      set ylabel '{Slip_1 rate (m/s)}'
+      plot MDSBI_file using 1:3 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:3 title 'TBSBIEM' with lines
+
+      set ylabel '{Tau_1 (MPa)}'
+      plot MDSBI_file using 1:4 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:4 title 'TBSBIEM' with lines
+
+      
+      set ylabel '{Slip_3 (m)}'
+      set yrange [-0.03:0.03]
+      #set key outside bottom center font ",8" 
+      set key inside bottom center font ",6" 
+      plot MDSBI_file using 1:5 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:5 title 'TBSBIEM' with lines
+      unset key
+      
+      set ylabel '{Slip_3 rate (m/s)}'
+      plot MDSBI_file using 1:6 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:6 title 'TBSBIEM' with lines
+
+      set ylabel '{Tau_3 (MPa)}'
+      plot MDSBI_file using 1:7 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:7 title 'TBSBIEM' with lines                 
+      unset yrange 
+        unset multiplot
+        unset output
+    }
+}
+    
+
+
+
+if (Problem_str eq 'TPV5') {
+    nplots = 16
+    array Station_MDSBI[16] 
+    Station_MDSBI[1] = './TPV5_Benchmark_Data_dunham/faultst-120dp000.txt'
+    Station_MDSBI[2] = './TPV5_Benchmark_Data_dunham/faultst-120dp075.txt'
+    Station_MDSBI[3] = './TPV5_Benchmark_Data_dunham/faultst-075dp000.txt'
+    Station_MDSBI[4] = './TPV5_Benchmark_Data_dunham/faultst-075dp075.txt'
+    Station_MDSBI[5] = './TPV5_Benchmark_Data_dunham/faultst-045dp000.txt'
+    Station_MDSBI[6] = './TPV5_Benchmark_Data_dunham/faultst-045dp075.txt'
+    Station_MDSBI[7] = './TPV5_Benchmark_Data_dunham/faultst000dp000.txt'
+    Station_MDSBI[8] = './TPV5_Benchmark_Data_dunham/faultst000dp075.txt'
+    Station_MDSBI[9] = './TPV5_Benchmark_Data_dunham/faultst000dp030.txt'
+    Station_MDSBI[10] = './TPV5_Benchmark_Data_dunham/faultst000dp120.txt'
+    Station_MDSBI[11] = './TPV5_Benchmark_Data_dunham/faultst045dp000.txt'
+    Station_MDSBI[12] = './TPV5_Benchmark_Data_dunham/faultst045dp075.txt'
+    Station_MDSBI[13] = './TPV5_Benchmark_Data_dunham/faultst075dp000.txt'
+    Station_MDSBI[14] = './TPV5_Benchmark_Data_dunham/faultst075dp075.txt'
+    Station_MDSBI[15] = './TPV5_Benchmark_Data_dunham/faultst120dp000.txt'
+    Station_MDSBI[16] = './TPV5_Benchmark_Data_dunham/faultst120dp075.txt'
+
+   do for [i=1:nplots] {
+      index_str = sprintf("%02d", i)
+      MDSBI_file = Station_MDSBI[i]
+      TBSBIEM_file = sprintf("../data/%s_Station%s.dat", Problem_str, index_str)
+      output_file = sprintf("%s_Station_%s.jpeg", Problem_str, index_str)
+
+      set terminal jpeg enhanced
+      set output output_file
+
+      title_str = sprintf("%s Station %s", Problem_str, index_str)
+      set multiplot layout 2,3 title title_str
+      #set key font ",8"
+      unset key
+      set xlabel font ",8"
+      set ylabel font ",8"
+      set xtics font ",8"
+      set ytics font ",8"
+      set xlabel '{Time (Sec)}'
+      set xrange [0:12]   
+      
+      set ylabel '{Slip_1 (m)}'
+      plot MDSBI_file using 1:2 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:2 title 'TBSBIEM' with lines
+
+      set ylabel '{Slip_1 rate (m/s)}'
+      plot MDSBI_file using 1:3 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:3 title 'TBSBIEM' with lines
+
+      set ylabel '{Tau_1 (MPa)}'
+      plot MDSBI_file using 1:4 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:4 title 'TBSBIEM' with lines
+
+      
+      set ylabel '{Slip_3 (m)}'
+      set yrange [-0.03:0.03]
+      #set key outside bottom center font ",8" 
+      set key inside bottom center font ",6" 
+      plot MDSBI_file using 1:5 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:5 title 'TBSBIEM' with lines
+      unset key
+      unset yrange 
+      
+      set yrange [-0.1:0.1]
+      set ylabel '{Slip_3 rate (m/s)}'
+      plot MDSBI_file using 1:6 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:6 title 'TBSBIEM' with lines
+      unset yrange 
+      set yrange [-2.5:2.5]
+      set ylabel '{Tau_3 (MPa)}'
+      plot MDSBI_file using 1:7 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:7 title 'TBSBIEM' with lines                 
+      unset yrange 
+        unset multiplot
+        unset output
+    }
+}
+
+
+
+# Note beofre running this code use following bash commands to get the files of near and far halfspaces to one file at an interface.
+# bash commands
+#  cd TPV7_Benchmark_Data_dunham
+#  paste farst-120dp075.txt nearst-120dp075.txt > Station_01_interface_dunham.txt
+#  paste farst-120dp000.txt nearst-120dp000.txt > Station_02_interface_dunham.txt
+#  paste farst000dp000.txt nearst000dp000.txt > Station_03_interface_dunham.txt
+#  paste farst120dp000.txt nearst120dp000.txt > Station_04_interface_dunham.txt
+#  paste farst120dp075.txt nearst120dp075.txt > Station_05_interface_dunham.txt
+#  cd ..
+
+if (Problem_str eq 'TPV6') {
+nplots = 5
+array Station_dunham[5] 
+Station_dunham[1] = 'TPV6_Benchmark_Data_dunham/Station_01_interface_dunham.txt'
+Station_dunham[2] = 'TPV6_Benchmark_Data_dunham/Station_02_interface_dunham.txt'
+Station_dunham[3] = 'TPV6_Benchmark_Data_dunham/Station_03_interface_dunham.txt'
+Station_dunham[4] = 'TPV6_Benchmark_Data_dunham/Station_04_interface_dunham.txt'
+Station_dunham[5] = 'TPV6_Benchmark_Data_dunham/Station_05_interface_dunham.txt'
+
+
+   do for [i=1:nplots] {
+      index_str = sprintf("%02d", i)
+      MDSBI_file = Station_dunham[i]
+      TBSBIEM_file = sprintf("../data/%s_Station%s.dat", Problem_str, index_str)
+      output_file = sprintf("%s_Station_%s.jpeg", Problem_str, index_str)
+
+      set terminal jpeg enhanced
+      set output output_file
+
+      title_str = sprintf("%s Station %s", Problem_str, index_str)
+      set multiplot layout 3,3 title title_str
+      #set key font ",6"
+      unset key
+      set xlabel font ",8"
+      set ylabel font ",8"
+      set xtics font ",8"
+      set ytics font ",8"
+      set xlabel '{Time (Sec)}'
+      set xrange [0:12]   
+      
+      set yrange [0:12]
+      set ylabel '{Slip_1 (m)}'
+      plot MDSBI_file using 1:($2 - $12) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:2 title 'TBSBIEM' with lines
+      unset yrange 
+      
+      set ylabel '{Slip_1 rate (m/s)}'
+      plot MDSBI_file using 1:($3 - $13) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:3 title 'TBSBIEM' with lines
+
+      set ylabel '{Tau_1 (MPa)}'
+      plot MDSBI_file using 1:($4 + $14)/2 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:4 title 'TBSBIEM' with lines
+                 
+      
+      set yrange [-0.04:0.04]
+      set ylabel '{Slip_3 (m)}'
+      plot MDSBI_file using 1:($5 - $15) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:(-$5) title 'TBSBIEM' with lines
+
+      set ylabel '{Slip_3 rate (m/s)}'
+      set yrange [-0.1:0.1]
+      plot MDSBI_file using 1:($6 - $16) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:(-$6) title 'TBSBIEM' with lines
+      unset yrange
+      
+      set ylabel '{Tau_3 (MPa)}'
+      plot MDSBI_file using 1:($7 + $17)/2 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:(-$7) title 'TBSBIEM' with lines                 
+
+      
+      set ylabel '{Slip_2 (m)}'
+      set yrange [-0.03:0.03]
+      set key inside bottom center font ",6" 
+      plot MDSBI_file using 1:($8 - $18) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:8 title 'TBSBIEM' with lines
+      unset key
+
+
+      set ylabel '{Slip_2 rate (m/s)}'
+      plot MDSBI_file using 1:($9 - $19) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:9 title 'TBSBIEM' with lines
+      unset yrange 
+      
+      set ylabel '{Tau_2 (MPa)}'
+      plot MDSBI_file using 1:($10 + $20)/2 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:10 title 'TBSBIEM' with lines                 
+
+        unset multiplot
+        unset output
+    }
+}
+
+
+# Note beofre running this code use following bash commands to get the files of near and far halfspaces to one file at an interface.
+# bash commands
+#  cd TPV7_Benchmark_Data_dunham
+#  paste farst-120dp075.txt nearst-120dp075.txt > Station_01_interface_dunham.txt
+#  paste farst-120dp000.txt nearst-120dp000.txt > Station_02_interface_dunham.txt
+#  paste farst000dp000.txt nearst000dp000.txt > Station_03_interface_dunham.txt
+#  paste farst120dp000.txt nearst120dp000.txt > Station_04_interface_dunham.txt
+#  paste farst120dp075.txt nearst120dp075.txt > Station_05_interface_dunham.txt
+#  cd ..
+
+if (Problem_str eq 'TPV7') {
+nplots = 5
+array Station_dunham[5] 
+Station_dunham[1] = 'TPV7_Benchmark_Data_dunham/Station_01_interface_dunham.txt'
+Station_dunham[2] = 'TPV7_Benchmark_Data_dunham/Station_02_interface_dunham.txt'
+Station_dunham[3] = 'TPV7_Benchmark_Data_dunham/Station_03_interface_dunham.txt'
+Station_dunham[4] = 'TPV7_Benchmark_Data_dunham/Station_04_interface_dunham.txt'
+Station_dunham[5] = 'TPV7_Benchmark_Data_dunham/Station_05_interface_dunham.txt'
+
+
+   do for [i=1:nplots] {
+      index_str = sprintf("%02d", i)
+      MDSBI_file = Station_dunham[i]
+      TBSBIEM_file = sprintf("../data/%s_Station%s.dat", Problem_str, index_str)
+      output_file = sprintf("%s_Station_%s.jpeg", Problem_str, index_str)
+
+      set terminal jpeg enhanced
+      set output output_file
+
+      title_str = sprintf("%s Station %s", Problem_str, index_str)
+      set multiplot layout 3,3 title title_str
+      #set key font ",6"
+      unset key
+      set xlabel font ",8"
+      set ylabel font ",8"
+      set xtics font ",8"
+      set ytics font ",8"
+      set xlabel '{Time (Sec)}'
+      set xrange [0:12]   
+      
+      set yrange [0:8]
+      set ylabel '{Slip_1 (m)}'
+      plot MDSBI_file using 1:($2 - $12) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:2 title 'TBSBIEM' with lines
+      unset yrange 
+      
+      set ylabel '{Slip_1 rate (m/s)}'
+      plot MDSBI_file using 1:($3 - $13) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:3 title 'TBSBIEM' with lines
+
+      set ylabel '{Tau_1 (MPa)}'
+      plot MDSBI_file using 1:($4 + $14)/2 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:4 title 'TBSBIEM' with lines
+                 
+      
+      set yrange [-0.04:0.04]
+      set ylabel '{Slip_3 (m)}'
+      plot MDSBI_file using 1:($5 - $15) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:(-$5) title 'TBSBIEM' with lines
+
+      set ylabel '{Slip_3 rate (m/s)}'
+      set yrange [-0.1:0.1]
+      plot MDSBI_file using 1:($6 - $16) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:(-$6) title 'TBSBIEM' with lines
+      unset yrange
+      
+      set ylabel '{Tau_3 (MPa)}'
+      plot MDSBI_file using 1:($7 + $17)/2 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:(-$7) title 'TBSBIEM' with lines                 
+
+      
+      set ylabel '{Slip_2 (m)}'
+      set yrange [-0.03:0.03]
+      set key inside bottom center font ",6" 
+      plot MDSBI_file using 1:($8 - $18) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:8 title 'TBSBIEM' with lines
+      unset key
+      
+
+      set ylabel '{Slip_2 rate (m/s)}'
+      plot MDSBI_file using 1:($9 - $19) title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:9 title 'TBSBIEM' with lines
+      unset yrange 
+      
+      set ylabel '{Tau_2 (MPa)}'
+      plot MDSBI_file using 1:($10 + $20)/2 title 'MDSBI' with lines, \
+                 TBSBIEM_file using 1:10 title 'TBSBIEM' with lines                 
+
+        unset multiplot
+        unset output
+    }
+}
+
+
+
