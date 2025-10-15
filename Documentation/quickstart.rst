@@ -115,14 +115,15 @@ Reload environment and test::
    
 This should display the installed CUDA version.
 
-
-Code Structure
+Code Repository
 ********************************
 To download the code, one can clone from the git repository using the command::
 
   git clone https://github.com/ranjkunn/TBSBIEM.git
   
-Now get into directory TBSBIEM, you will find following directories::
+Code Structure
+********************************
+Once the repository is downloaded, get into the directory TBSBIEM, you will find the following directories::
 
    ./data
    ./Input_files
@@ -155,7 +156,7 @@ Now get into directory TBSBIEM, you will find following directories::
 
 Building the docs
 ************************
-Before building the documentation locally, you need to have Python, Sphinx, and sphinx_rtd_theme installed in your system. Follow the commands given below to satisfy the prerequisites::
+Before building the documentation locally, you need to have Python, Sphinx, and the sphinx_rtd_theme package installed on your system. Follow the commands given below to satisfy the prerequisites::
 
    python -m pip install --upgrade pip
    pip install sphinx sphinx_rtd_theme
@@ -169,7 +170,7 @@ The documentation will be built in the _build/html directory.
 
 Code Compilation and Testing
 ********************************
-You can now compile TBSBIEM with the following commands::
+You can compile TBSBIEM with the following commands::
 
   cd TBSBIEM
   cd src
