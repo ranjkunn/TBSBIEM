@@ -5,7 +5,7 @@ This section demonstrates how to use the code to solve USGS/SECE benchmark probl
 
 Input files
 ***************
-The input file that we have created performs an automatic feed of the data into code during the execution. One can create a new input file according to the fault plane dimensions, material properties, loads and output locations following the example input file given below.
+The input file we created performs an automatic feed of data into the code during execution. One can create a new input file according to the fault plane dimensions, material properties, loads, and output locations, following the example input file given below.
 
 An example input file is given as follows::
 
@@ -19,7 +19,7 @@ An example input file is given as follows::
    15000.d0
    Xr_Ratio: Ratio of (rupture zone + barrier zone)  to rupture zone. i.e., (rupture zone + barrier zone)/rupture zone
    2.56d0
-   Z_SYMM   : Specify 'T' if symmetric boundary conditions need to used else give 'F'. For TPV3 - F  , and for TPV5,TPV6,TPV7 - T.
+   Z_SYMM   : Specify 'T' if symmetric boundary conditions need to be used, else give 'F'. For TPV3 - F  , and for TPV5,TPV6,TPV7 - T.
    F
    **Mesh Info**
    nele1    :  (nele1) Total number of elements in X1-direction (Should be the powers of 2)
@@ -27,11 +27,11 @@ An example input file is given as follows::
    nele3    : Total number of elements in X3-direction (Should be the powers of 2)
    384
    **Material Info**
-   Csm      : The shear wave speed of lower half-space  in m/s
+   Csm      : The shear wave speed of the lower half-space  in m/s
    3464d0
    Cdm      : Dilatational wave speed of lower half-space  in m/s
    6000d0
-   Rom      : The density of lower half-space  in kg/m³
+   Rom      : The density of the lower half-space  in kg/m³
    2670d0
    nu       : Poisson's ratio
    0.25d0
@@ -49,7 +49,7 @@ An example input file is given as follows::
    gamma    : Non-dimensionalised time step (Refinement in Kernel interpolation.)
    0.005d0
    **Kernel Info**
-   input    : Give input as 0 if kernels to be calculated and stored in folder ./Kernels
+   input    : Give input as 0 if kernels are to be calculated and stored in the folder ./Kernels
    input    : Give input as 1 if kernels are calculated a priori and stored in folder ./Kernels
    1
    **Background Frictional Properties**
@@ -62,29 +62,29 @@ An example input file is given as follows::
    ** Background Stresses** T0bg(1),T0bg(2),T0bg(3) in N/m^2
    70d6  -120d6   0d0
    **Nucleation Zone List** (Only rectangular and square nucleation zones are modeled).  Note: x12>x11 and x32>x31
-   No_neucles : No.of Nucleation Zones. If no Zones, give one line as 0,0,0,0,T0bg(1),T0bg(2),T0bg(3). If yes, add lines with x11,x31,x12,x32,tau1, tau2, tau3.
+   No_neucles : No.of Nucleation Zones. If no Zones, No_neucles = 0 add nothing. If yes, add lines with x11,x31,x12,x32,tau1, tau2, tau3.
    1
    -1.5d3   -1.5d3  1.5d3   1.5d3  81.6d6 -120d6  0d6
    **Asperity Zone List** (Only circular asperities are modeled)
    No_Asps : No.of Asperity Zones. If no Zones, No_Asps = 0 add nothing. If yes, add No_Asps lines with Asps_x, Asps_y,Asps_radii,Asps_mus0,Asps_mur0.
    0
    ** Coordinates of output station points** x_i Y_i
-   NStations: No. of Station points. Followed by coordinates of the station points in metres
+   NStations: No. of Station points. Followed by the coordinates of the station points in metres
    2
    0d3   3d3
    7.5d3 0d3
 
 
-Each parameter can be changed and a new input file can be fed for solving problems.
+Each parameter can be changed, and a new input file can be fed for solving problems.
 
 
 
 Kernel Data
 ***************
 
-We have provided the precomputed Kernels for USGS/SCEC benchmark problems TPV3, TPV5, TPV6, and TPV7 with the mesh size that we have choosen to solve the problem. 
+We have provided the precomputed Kernels for the USGS/SCEC benchmark problems TPV3, TPV5, TPV6, and TPV7, along with the mesh size we chose to solve the problems. 
 
-However, if you want to compute the kernels, a separate directory with source code is provided. One can generate the Kernels using the following steps::
+However, if you want to compute the kernels, a separate directory with the source code is provided. One can generate the Kernels using the following steps::
 
   cd TBSBIEM
   cd src_Kernels
@@ -92,19 +92,18 @@ However, if you want to compute the kernels, a separate directory with source co
   cd ..
   ./Kernel_Check
   
-or one can generate the Kernels during the simulation as well.  
+One can also generate the Kernels during the simulation.  
   
-Just provide '0' at `Pre_Kernels` prompt in the input file, the code will generate and store in a directory given like `TPV5_Kernels` for example.
+Just provide '0' at `Pre_Kernels` prompt in the input file, the code will generate and store in a directory given, like `TPV5_Kernels`, for example.
 
 
-**Note:** If you provide '1' at `Pre_Kernels` prompt in the input file, the code will search for kernels with no kernels generated. Thus be carefull if you need to generate the kernels, provide '0' at `Pre_Kernels` prompt in the input file.
-
+**Note:** If you provide '1' at the `Pre_Kernels` prompt in the input file, the code will search for kernels with no kernels generated. Thus, be cautious when generating the kernels; provide '0' at the `Pre_Kernels` prompt in the input file.
 
 Running a Simulation
 *********************
 The code is provided with several input files to solve USGS/SCEC benchmark problems. Namely, TPV3, TPV5, TPV6 and TPV7. One can solve these benchmark problems changing a problem name in **TPV_Problem.in** file.
 
-For example, if you want to solve TPV6 problem then store the string::
+For example, if you want to solve the TPV6 problem, then store the string::
 
    TPV6
 
@@ -119,7 +118,17 @@ Compile and execute the code::
       ./TBSBIEM-v1.1.0
 
 
-The problem TPV6 will be solved and the data will be stored in the directory './data'.
+The problem TPV6 will be solved, and the data will be stored in the directory './data'.
+
+Now, if you would like to run the TPV5 problem, just change the input string in the file **Test_Problem.in** to::
+
+   TPV6
+
+Now, just execute the code:: 
+
+      ./TBSBIEM-v1.1.0
+
+The problem TPV5 will be solved, and the data will be stored in the directory './data'.
 
 Post-Processing
 ********************* 
