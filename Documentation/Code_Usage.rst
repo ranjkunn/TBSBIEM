@@ -132,17 +132,19 @@ The problem TPV5 will be solved, and the data will be stored in the directory '.
 
 Post-Processing
 ********************* 
-For a quick plotting one can use the gnuplot script given below to plot the contour plots on the fault plane as::
+For post-processing of results, we have provided two gnuplot codes in './Post_Processing' directory. The first code **TPV_Contour_Plots.pg** creates the contour for slip, slip-rate, math::'\ tau_1, \tau_2` and math::'\ tau_3` with a time interval of 0.5 Seconds. The second code, **TPV_Station_Plots.pg**, will generate a comparison of field variables at station points with MDSBI results.
 
-   for i in {0001..0015}; do    gnuplot -e "set terminal jpeg; set hidden3d; set xlabel 'x1 (km)'; set ylabel 'x3 (km)'; set zlabel 'Slip (m)'; set xrange [-15:15]; set yrange [-7.5:7.5];   set zrange [0.0:0.5]; set cbrange [0.0:0.5]; set view map; splot './data/TPV3_Out$i.dat' u 2:3:4 ps 0.1 palette" > Slip_Top$i.jpeg; done 
+.. For a quick plotting one can use the gnuplot script given below to plot the contour plots on the fault plane as::
+
+..   for i in {0001..0015}; do    gnuplot -e "set terminal jpeg; set hidden3d; set xlabel 'x1 (km)'; set ylabel 'x3 (km)'; set zlabel 'Slip (m)'; set xrange [-15:15]; set yrange [-7.5:7.5];   set zrange [0.0:0.5]; set cbrange [0.0:0.5]; set view map; splot './data/TPV3_Out$i.dat' u 2:3:4 ps 0.1 palette" > Slip_Top$i.jpeg; done 
    
-The example script generate a contour plot of rupture front with duration intervel of 0.5 Sec on  the fault plan for TPV3 benchmark problem.
+.. The example script generate a contour plot of rupture front with duration intervel of 0.5 Sec on  the fault plan for TPV3 benchmark problem.
 
-Or we have given gnuplot script in './Post_Processing' directory using which one can generate the contour plot with time intervel of 1 Sec. One need to change the variable *Problem_no* to respective TPV problem required to plot out of 3,5,6 and 7.
+.. Or we have given gnuplot script in './Post_Processing' directory using which one can generate the contour plot with time intervel of 1 Sec. One need to change the variable *Problem_no* to respective TPV problem required to plot out of 3,5,6 and 7.
 
-One can create an interesting video using ffmpeg cammand as::
+.. One can create an interesting video using ffmpeg cammand as::
 
-   ffmpeg -r 10 -i Slip_Top%04d.jpeg  -vf "fps=10" Slip_Top.mp4
+..    ffmpeg -r 10 -i Slip_Top%04d.jpeg  -vf "fps=10" Slip_Top.mp4
    
 **Note:** To plot these figure and the video generation one needs to install gnuplot and ffmpeg. The installation commands are as follows::
 
