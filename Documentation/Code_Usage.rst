@@ -132,7 +132,17 @@ The problem TPV5 will be solved, and the data will be stored in the directory '.
 
 Post-Processing
 ********************* 
-For post-processing of results, we have provided two gnuplot codes in './Post_Processing' directory. The first code **TPV_Contour_Plots.pg** creates the contour for slip, slip-rate, math::'\ tau_1, \tau_2` and math::'\ tau_3` with a time interval of 0.5 Seconds. The second code, **TPV_Station_Plots.pg**, will generate a comparison of field variables at station points with MDSBI results.
+We have provided GNUPLOT scripts and the benchmark data for the MDSBI code, covering TPV3, TPV5, TPV6, and TPV7, to plot various field variables at specific station points. The plots generated from the scripts provide a comparison of results from TBSBIEM and MDSBI.
+
+For post-processing of results of TBSBIEM, we have provided two gnuplot codes in the './Post_Processing' directory. The first code **TPV_Contour_Plots.pg** creates the contour for slip, slip-rate, :math:'\ tau_1, \tau_2` and :math:'\ tau_3` with a time interval of 0.5 Seconds. The second code, **TPV_Station_Plots.pg**, will generate a comparison of field variables at station points with MDSBI results.
+
+You can use the following command to generate the contour plots::
+
+   gnuplot TPV_Contour_Plots.pg
+
+You can use the following command to generate the plots of field variables at different stataion points::
+
+   gnuplot TPV_Station_Plots.pg
 
 .. For a quick plotting one can use the gnuplot script given below to plot the contour plots on the fault plane as::
 
@@ -152,8 +162,3 @@ For post-processing of results, we have provided two gnuplot codes in './Post_Pr
    sudo apt upgrade
    sudo apt install gnuplot  
    sudo apt install ffmpeg -y
-
-
-Comparison of Results
-----------------------------
-We have provided GNUPLOT scripts and the benchmark data of MDBSI code for TPV3, TPV5, TPV6, and TPV7 to plot the various field variables at specific station points. The plots generated from the scripts provides the comparison of results from TBSBIEM and MDSBI.
