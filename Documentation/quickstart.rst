@@ -123,7 +123,7 @@ To download the code, one can clone from the git repository using the command::
   
 Code Structure
 ********************************
-Once the repository is downloaded, get into the directory TBSBIEM, you will find the following directories::
+Once the repository is downloaded, get into the directory TBSBIEM, you will find the following directories:
 
 .. _Package_Tree-fig:
 
