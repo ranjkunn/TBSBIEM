@@ -166,7 +166,7 @@ Once the repository is downloaded, get into the directory TBSBIEM, you will find
 
 'Test_Problem.in' will have a target problem to be solved during the execution of the code.
 
-**Note:** we have to create a directory as ‘./data’ in  which the output data of the solution are stored during the execution of the program.
+**Note:** We have to create a directory ‘./data’ in which the output data of the solution is stored during the execution.
 
 Building the docs
 ************************
