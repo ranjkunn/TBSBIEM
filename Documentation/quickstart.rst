@@ -130,6 +130,7 @@ Once the repository is downloaded, get into the directory TBSBIEM, you will find
 .. figure:: ./Doc_figs/Package_Tree.jpg
    :alt: Package_Tree
    :align: center   
+   :width: 60%
 
    File system tree for TBSBIEM package.
 
