@@ -125,16 +125,24 @@ Code Structure
 ********************************
 Once the repository is downloaded, get into the directory TBSBIEM, you will find the following directories::
 
-   ./data
-   ./Input_files
-   ./src
-   ./src_Kernels
-   ./Documentation
-   ./TPV3_Kernels
-   ./TPV5_Kernels
-   ./TPV6_Kernels
-   ./TPV7_Kernels
-   `Test_Problem.in`
+.. _Package_Tree-fig:
+
+.. figure:: ./Doc_figs/Package_Tree.jpg
+   :alt: Package_Tree
+   :align: center   
+
+   File system tree for TBSBIEM package.
+
+..   ./data
+..   ./Input_files
+..  ./src
+..   ./src_Kernels
+..   ./Documentation
+..   ./TPV3_Kernels
+..   ./TPV5_Kernels
+..   ./TPV6_Kernels
+..   ./TPV7_Kernels
+..   `Test_Problem.in`
 
 './data' stores the output data of the solution.
 
