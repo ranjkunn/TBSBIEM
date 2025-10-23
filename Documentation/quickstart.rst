@@ -144,13 +144,13 @@ Once the repository is downloaded, get into the directory TBSBIEM, you will find
 ..   ./TPV7_Kernels
 ..   `Test_Problem.in`
 
-'./data' stores the output data of the solution.
+'./Documentation' stores the documentation source code.
 
 './Input_files' will have all the input files created.
 
-'./src' will have the main source files of the code.
+'./Post_Processing' will have the Gnuplot script to generate plots.
 
-'./src_Kernels' will contain source files only for generating the Kernels.
+'./TEST_Kernels' will have kernels pre-computed for the input file  given in './Input_files/TEST.in'
 
 './TPV3_Kernels' will have kernels pre-computed for the input file  given in './Input_files/TPV3.in'
 
@@ -159,6 +159,10 @@ Once the repository is downloaded, get into the directory TBSBIEM, you will find
 './TPV6_Kernels' will have kernels pre-computed for the input file  given in './Input_files/TPV6.in'
 
 './TPV7_Kernels' will have kernels pre-computed for the input file  given in './Input_files/TPV7.in'
+
+'./src_Kernels' will contain source files only for generating the Kernels.
+
+'./src' will have the main source files of the code.
 
 'Test_Problem.in' will have a target problem to be solved during the execution of the code.
 
