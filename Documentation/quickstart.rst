@@ -166,6 +166,8 @@ Once the repository is downloaded, get into the directory TBSBIEM, you will find
 
 'Test_Problem.in' will have a target problem to be solved during the execution of the code.
 
+**Note:** we have to create a directory as ‘./data’ in  which the output data of the solution are stored during the execution of the program.
+
 Building the docs
 ************************
 Before building the documentation locally, you need to have Python, Sphinx, and the sphinx_rtd_theme package installed on your system. Follow the commands given below to satisfy the prerequisites::
