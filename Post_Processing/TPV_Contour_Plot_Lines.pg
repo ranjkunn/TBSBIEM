@@ -1,6 +1,7 @@
 Problem_str = sprintf('TPV3')
 nframes = 12
 
+# JPEG
 set terminal jpeg enhanced font "arial,10" fontscale 1.0 size 600, 400
 set hidden3d
 
@@ -48,10 +49,6 @@ set cbrange [0.0:10]
 # The FOR loop in this splot overlays the 3 data files correctly
 splot for [i=2:nframes:2] sprintf("../data/%s_Out%04d.dat", Problem_str, i) using 2:3:4 with lines title sprintf("%01d sec", i/2) lw 2
 
-#notitle
-
-#title sprintf("%02d sec", i/2)
-
 unset output  # Correctly close the output
 
 # EPS
@@ -67,38 +64,3 @@ output_file = sprintf("%s_Contour_Plot.pdf", Problem_str)
 set output output_file   # Correct: output set before plo
 replot
 unset output
-
-
-
-#output_file = sprintf("%s_Slip_top.jpeg", Problem_str)
-#set output output_file
-#  Follwoing commands are usefull to create a video clip file in mp4 format for different field variable screen shots generated using above code.
-#  ffmpeg -r 10 -i TEST_Slip%04d.jpeg  -vf "fps=10" TEST_Slip.mp4
-#  ffmpeg -r 10 -i TEST_Slip-rate%04d.jpeg  -vf "fps=10" TEST_Slip-rate.mp4
-#  ffmpeg -r 10 -i TEST_Tau1_%04d.jpeg  -vf "fps=10" TEST_Tau1.mp4
-#  ffmpeg -r 10 -i TEST_Tau2_%04d.jpeg  -vf "fps=10" TEST_Tau2.mp4
-#  ffmpeg -r 10 -i TEST_Tau3_%04d.jpeg  -vf "fps=10" TEST_Tau3.mp4
-
-#  ffmpeg -r 10 -i TPV3_Slip%04d.jpeg  -vf "fps=10" TPV3_Slip.mp4
-#  ffmpeg -r 10 -i TPV3_Slip-rate%04d.jpeg  -vf "fps=10" TPV3_Slip-rate.mp4
-#  ffmpeg -r 10 -i TPV3_Tau1_%04d.jpeg  -vf "fps=10" TPV3_Tau1.mp4
-#  ffmpeg -r 10 -i TPV3_Tau2_%04d.jpeg  -vf "fps=10" TPV3_Tau2.mp4
-#  ffmpeg -r 10 -i TPV3_Tau3_%04d.jpeg  -vf "fps=10" TPV3_Tau3.mp4
-
-#  ffmpeg -r 10 -i TPV5_Slip%04d.jpeg  -vf "fps=10" TPV5_Slip.mp4
-#  ffmpeg -r 10 -i TPV5_Slip-rate%04d.jpeg  -vf "fps=10" TPV5_Slip-rate.mp4
-#  ffmpeg -r 10 -i TPV5_Tau1_%04d.jpeg  -vf "fps=10" TPV5_Tau1.mp4
-#  ffmpeg -r 10 -i TPV5_Tau2_%04d.jpeg  -vf "fps=10" TPV5_Tau2.mp4
-#  ffmpeg -r 10 -i TPV5_Tau3_%04d.jpeg  -vf "fps=10" TPV5_Tau3.mp4
-
-#  ffmpeg -r 10 -i TPV6_Slip%04d.jpeg  -vf "fps=10" -loop TPV6_Slip.mp4
-#  ffmpeg -r 10 -i TPV6_Slip-rate%04d.jpeg  -vf "fps=10" TPV6_Slip-rate.mp4
-#  ffmpeg -r 10 -i TPV6_Tau1_%04d.jpeg  -vf "fps=10" TPV6_Tau1.mp4
-#  ffmpeg -r 10 -i TPV6_Tau2_%04d.jpeg  -vf "fps=10" TPV6_Tau2.mp4
-#  ffmpeg -r 10 -i TPV6_Tau3_%04d.jpeg  -vf "fps=10" TPV6_Tau3.mp4
-
-#  ffmpeg -r 10 -i TPV7_Slip%04d.jpeg  -vf "fps=10" -loop TPV7_Slip.mp4
-#  ffmpeg -r 10 -i TPV7_Slip-rate%04d.jpeg  -vf "fps=10" TPV7_Slip-rate.mp4
-#  ffmpeg -r 10 -i TPV7_Tau1_%04d.jpeg  -vf "fps=10" TPV7_Tau1.mp4
-#  ffmpeg -r 10 -i TPV7_Tau2_%04d.jpeg  -vf "fps=10" TPV7_Tau2.mp4
-#  ffmpeg -r 10 -i TPV7_Tau3_%04d.jpeg  -vf "fps=10" TPV7_Tau3.mp4
